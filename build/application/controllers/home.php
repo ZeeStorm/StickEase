@@ -10,6 +10,11 @@ class Home extends CI_Controller {
 	{
 		$this->load->view( 'design' );
 	}
+	
+	function board()
+	{
+		$this->load->view( 'board' );
+	}
 }
 
 /* End of file welcome.php */

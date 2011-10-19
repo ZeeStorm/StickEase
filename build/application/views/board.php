@@ -8,7 +8,7 @@
 	<link rel="stylesheet" media="all" type="text/css" href="/css/uniform.default.css">
 	<link rel="stylesheet" media="all" type="text/css" href="/css/default.css">
 </head>
-<body id="stage" class="signed_in">
+<body id="board" class="signed_in">
 <section id="header_wrapper">
 	<header>
 		<div class="logo"><a href="/">Stickease - The only simple sticky system</a></div>
@@ -25,12 +25,7 @@
 </section>
 <section id="content_wrapper">
 	<div id="content">
-		<div class="col half">
-			<h1>What are we?</h1>
-		</div>
-		<div class="col half">
-			[insert screenshot here]
-		</div>
+		
 	</div>
 </section>
 <section id="footer_wrapper">

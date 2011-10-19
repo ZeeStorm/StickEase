@@ -1,3 +1,0 @@
-$(function() {
-	$('input:text').uniform();
-});
