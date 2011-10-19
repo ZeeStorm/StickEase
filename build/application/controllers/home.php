@@ -1,0 +1,16 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Home extends CI_Controller {
+	public function index()
+	{
+		$this->load->view( 'splash' );
+	}
+	
+	function stage()
+	{
+		$this->load->view( 'design' );
+	}
+}
+
+/* End of file welcome.php */
+/* Location: ./application/controllers/home.php */

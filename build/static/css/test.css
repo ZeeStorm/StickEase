@@ -1,0 +1,139 @@
+body {
+	font-family:"Helvetica Neue",Helvetica,sans-serif;
+	font-size: 20px;
+	padding: 8px;
+}
+
+#test {
+	margin: 0 auto;
+	width: 1010px;
+}
+
+#test > ul {
+	background: #ccc;
+	border: 1px solid #000;
+	border-bottom: 0;
+	float: left;
+	list-style: none;	
+	width: 300px;
+}
+
+#test > ul li {
+	border-bottom: 1px solid #000;
+	padding: 8px;
+}
+
+#test li a {
+	color: #800;
+	text-decoration: none;
+}
+
+#test li a small {
+	font-size: 0.6em;
+}
+
+#test li a:hover {
+	text-decoration: underline;
+}
+
+div.container {
+	border: 1px solid #000;
+	border-top: 0;
+	border-bottom: 0;
+	float: left;
+	margin: 0 0 0 8px;
+	padding: 0 8px;
+	width: 682px;
+}
+
+div.api form {
+	border-bottom: 1px solid #000;
+	display: none;
+	margin: 0 0 8px;
+	padding: 0 0 8px;
+}
+
+div.api input {
+	border: 1px solid #000;
+	background: #ddd;
+}
+
+div.api input:active,
+div.api input:focus {
+	background: #eee;
+}
+
+h2 {
+	border-bottom: 1px solid #000;
+	font-size: 24px;
+	font-weight: bold;
+	margin: 0 0 8px;
+	padding: 0 0 8px;
+}
+
+div.api dd {
+	clear: left;
+	float: left;
+	padding: 8px 0;
+	width: 270px;
+}
+
+div.api label {
+	color: #C21;
+	font-weight: bold;
+	line-height: 30px;
+}
+
+div.api dd.optional label {
+	color: #000;
+}
+
+div.api dt {
+	float: left;
+	padding: 8px 0;
+	width: 412px;
+}
+
+div.api dt input {
+	font-size: 20px;
+}
+
+div.api form > p {
+	padding: 16px 0 0;
+	text-align: right;
+}
+
+div.api button {
+	border: 1px solid #111;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 20px;
+	padding: 4px 16px;
+}
+
+div.response {
+	float: left;
+	width: 684px;
+}
+
+div.response pre {
+	background: url(/static/images/test-bg.png) repeat 0 0;
+	font-family: "Panic Sans",Monospace,sans-serif;
+	font-size: 12px;
+	line-height: 12px;
+	margin: 4px 0;
+	overflow: hidden;
+	overflow-x: auto;
+	padding: 0 4px;
+	width: 676px;
+}
+
+div.response pre .success {
+	color: #080;
+}
+
+div.response pre .fail {
+	color: #800;
+}
