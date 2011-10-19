@@ -16,42 +16,12 @@
 	<header>
 		<nav>
 			<ul>
-				<li><a href="/">Home</a></li>
-				<li><a href="/users/{{USERNAME}}">My Profile</a></li>
-				<li><a href="/services/sites">My Sites</a></li>
-				<li><a href="/services/signout">Sign Out</a></li>
+				<li><input type="email" placeholder="email" class="selector"></li>
+				<li><input type="password" placeholder="password" class="selector"></li>
+				<li><button type="submit">sign in</button></li>
 			</ul>
 		</nav>
-		<div class="logo"><a href="/">Stage.io - Social Actions API</a></div>
-	</header>
-</section>
-<section id="subheader_wrapper">
-	<header>
-		<aside id="user_box">
-			<img alt="xeno" src="http://1.gravatar.com/avatar/053d058fa5828ad9e19748a5a7893ef5?size=50">
-			<div id="user_meta">
-				<h2>ZeeStorm</h2>
-				<ul>
-					<li><a href="/services/settings">Settings</a></li>
-					<li><a href="/services/signout">Sign Out</a></li>
-				</ul>
-			</div>
-		</aside>
-		<div id="user_apps">
-			<h2>My Applications</h2>
-			<ul>
-				<li><a href="/apps/geeklist"><img alt="Geeklist" src="/static/images/social/geeklist_32.png"></a></li>
-				<li><a href="/apps/dribbble"><img alt="Dribbble" src="/static/images/social/dribbble_32.png"></a></li>
-				<li><a href="/apps/digg"><img alt="Digg" src="/static/images/social/digg_32.png"></a></li>
-				<li><a href="/apps/grooveshark"><img alt="Grooveshark" src="/static/images/social/grooveshark_32.png"></a></li>
-				<li><a href="/apps/gowalla"><img alt="Gowalla" src="/static/images/social/gowalla_32.png"></a></li>
-				<li><a href="/apps/rdio"><img alt="Rdio" src="/static/images/social/rdio_32.png"></a></li>
-				<li><a href="/apps/steam"><img alt="Steam" src="/static/images/social/steam_32.png"></a></li>
-				<li><a href="/apps/tumblr"><img alt="Tumblr" src="/static/images/social/tumblr_32.png"></a></li>
-				<li><a href="/apps/lastfm"><img alt="LastFM" src="/static/images/social/lastfm_32.png"></a></li>
-				<li><a href="/apps/vimeo"><img alt="Vimeo" src="/static/images/social/vimeo_32.png"></a></li>
-			</ul>
-		</div>
+		<div class="logo"><a href="/">Stickease - The only simple sticky system</a></div>
 	</header>
 </section>
 <section id="content_wrapper">
@@ -166,25 +136,7 @@
 <!-- JS -->
 <script type="text/javascript" src="/static/js/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="/static/js/jquery.uniform.min.js"></script>
-<script type="text/javascript" src="/static/js/omni.js"></script>
-
-<!--
-<script type="text/javascript" src="/static/js/core/jquery-1.6.2.min.js"></script>
-<script type="text/javascript" src="/static/js/core/jquery-ui-1.8.16.custom.min.js"></script>
-<script type="text/javascript" src="/static/js/core/jquery.validate.min.js"></script>
-<script type="text/javascript" src="/static/js/core/handlebars.1.0.0.beta.3.js"></script>
-<script type="text/javascript" src="/static/js/core/history.adapter.jquery.js"></script>
-<script type="text/javascript" src="/static/js/core/history.js"></script>
-<script type="text/javascript" src="/static/js/core/jquery.scrollto.min.js"></script>
-<script type="text/javascript" src="/static/js/core/2.3.0-crypto-sha1.js"></script>
-<script type="text/javascript" src="/static/js/core/jquery.cookie.js"></script>
-<script type="text/javascript" src="/static/js/core/jquery.uniform.min.js"></script>
-<script type="text/javascript" src="/static/js/core/spin.min.js"></script>
-<script type="text/javascript" src="/static/js/core/keepab.js"></script>
-<script type="text/javascript" src="/static/js/helpers.js"></script>
-<script type="text/javascript" src="/static/js/default.js"></script>
-<script type="text/javascript" src="/static/js/config.js"></script>
--->
+<script type="text/javascript" src="/static/js/main.js"></script>
 <!--[if lt IE 9]>
 <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
