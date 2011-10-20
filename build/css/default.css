@@ -312,6 +312,62 @@ input[type=password] {
 #sticky_board h2 {
 	border-bottom: 2px solid #d6ddce;
 	line-height: 21px;
-	margin: 8px;
+	margin: 8px 8px 0;
 	padding: 0 0 4px 4px;
+}
+
+#sticky_board .sticky_list > li.orange {
+	background: #ffaa56;
+}
+
+#sticky_board .sticky_list > li.blue {
+	background: #aad4ff;
+}
+
+#sticky_board .sticky_list > li.pink {
+	background: #fcabd2;
+}
+
+#sticky_board .sticky_list > li.grey {
+	background: #ccc;
+}
+
+#sticky_board .sticky_list > li.green {
+	background: #6df26d;
+}
+
+#sticky_board .sticky_list > li {
+	background: #ff0;
+	border: 1px solid #d6ddce;
+	-moz-box-shadow: 0 0 0 1px #fff inset;
+	-webkit-box-shadow: 0 0 0 1px #fff inset;
+	box-shadow: 0 0 0 1px #fff inset;
+	float: left;
+	margin: 0 4px 4px 0;
+	padding: 3px;
+	width: 150px;
+}
+
+#sticky_board .sticky_list > li p.note {
+	height: 52px;
+	line-height: 13px;
+	width: 150px;
+	word-wrap: break-word;
+	overflow: hidden;
+}
+
+#sticky_board .sticky_list > li p.separator {
+	background: #d6ddce;
+	border-bottom: 1px solid #fff;
+	border-top: 1px solid #fff;
+	height: 1px;
+	margin: 4px 0;
+}
+
+#sticky_board .sticky_list > li p.assigned a {
+	display: block;
+	line-height: 15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 140px;
 }

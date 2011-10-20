@@ -13,11 +13,11 @@ $(function() {
 			$liWidthUpd = $('#sticky_board > li'),
 			updateBoard = function() {
 				var winHeight = ($(window).height() - 93),
-					divHeight = ((winHeight - $('#sticky_board h2:first').outerHeight()) - 16),
+					divHeight = ((winHeight - $('#sticky_board h2:first').outerHeight(true)) - 16),
 					liWidth = Math.floor(($(window).width() - 2) / 3);
 				
 				$winHeightUpd.height(winHeight);
-				$divHeightUpd.height(divHeight);
+				$divHeightUpd.height(divHeight).children('ul').css('min-height', divHeight + 'px');
 				$liWidthUpd.width(liWidth).last().width(($(window).width() - 2) - (liWidth * 2));
 			};
 		

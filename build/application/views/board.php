@@ -33,6 +33,12 @@
 				<h2>not started</h2>
 				<div>
 					<ul class="sticky_list">
+						<li><p class="note">this is a pending sticky! rawr rawr rawr rrrwqrwe wer ewr wer wer wer wer seruwer wer wek werkjhwerkwe  werkjhwer kwe</p><p class="separator"></p><p class="assigned"><a href="#">james wagoner</a></p></li>
+						<li class="orange"><p class="note">this is a pending sticky! rawr rawr rawr rrrwqrwe wer ewr wer wer wer wer seruwer wer wek werkjhwerkwe  werkjhwer kwe</p><p class="separator"></p><p class="assigned"><a href="#">james wagoner</a></p></li>
+						<li class="blue"><p class="note">this is a pending sticky! rawr rawr rawr rrrwqrwe wer ewr wer wer wer wer seruwer wer wek werkjhwerkwe  werkjhwer kwe</p><p class="separator"></p><p class="assigned"><a href="#">james wagoner</a></p></li>
+						<li class="green"><p class="note">this is a pending sticky! rawr rawr rawr rrrwqrwe wer ewr wer wer wer wer seruwer wer wek werkjhwerkwe  werkjhwer kwe</p><p class="separator"></p><p class="assigned"><a href="#">james wagoner</a></p></li>
+						<li class="grey"><p class="note">this is a pending sticky! rawr rawr rawr rrrwqrwe wer ewr wer wer wer wer seruwer wer wek werkjhwerkwe  werkjhwer kwe</p><p class="separator"></p><p class="assigned"><a href="#">james wagoner</a></p></li>
+						<li class="pink"><p class="note">this is a pending sticky! rawr rawr rawr rrrwqrwe wer ewr wer wer wer wer seruwer wer wek werkjhwerkwe  werkjhwer kwe</p><p class="separator"></p><p class="assigned"><a href="#">james wagoner</a></p></li>
 					</ul>
 				</div>
 			</li>
