@@ -3,6 +3,9 @@
 <head>
 	<title>Stickease - Simply Stickys</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--[if lt IE 9]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 	<link href="/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
 	<link rel="stylesheet" media="all" type="text/css" href="/css/reset.css">
 	<link rel="stylesheet" media="all" type="text/css" href="/css/uniform.default.css">
@@ -25,7 +28,29 @@
 </section>
 <section id="content_wrapper">
 	<div id="content">
-		
+		<ul id="sticky_board" class="clearfix">
+			<li id="notstarted">
+				<h2>not started</h2>
+				<div>
+					<ul class="sticky_list">
+					</ul>
+				</div>
+			</li>
+			<li id="inprogress">
+				<h2>in progress</h2>
+				<div>
+					<ul class="sticky_list">
+					</ul>
+				</div>
+			</li>
+			<li id="completed">
+					<h2>completed</h2>
+				<div>
+					<ul class="sticky_list">
+					</ul>
+				</div>
+			</li>
+		</ul>
 	</div>
 </section>
 <section id="footer_wrapper">
@@ -36,8 +61,5 @@
 <script type="text/javascript" src="/js/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="/js/jquery.uniform.min.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
-<!--[if lt IE 9]>
-<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
 </body>
 </html>

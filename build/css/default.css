@@ -49,6 +49,7 @@ body {
 
 body#board {
 	height: 100%;
+	overflow: hidden;
 	width: 100%;
 }
 
@@ -120,12 +121,12 @@ input[type=password] {
 }
 
 #header_wrapper {
-	border-bottom: 1px solid #fff;
 	position: absolute;
 	left: 0;
 	right: 0;
 	top: 0;
 	height: 50px;
+	min-width: 960px;
 	background: #fcfff4;
 	background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fcfff4), color-stop(40%,#dfe5d7), color-stop(100%,#b3bead));
@@ -134,6 +135,7 @@ input[type=password] {
 	background: -ms-linear-gradient(top, #fcfff4 0%,#dfe5d7 40%,#b3bead 100%);
 	background: linear-gradient(top, #fcfff4 0%,#dfe5d7 40%,#b3bead 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+	z-index: 1000;
 }
 
 #header_wrapper header {
@@ -195,6 +197,7 @@ input[type=password] {
 
 #content_wrapper {
 	min-height: 400px;
+	min-width: 960px;
 	margin-top: 50px;
 	background: #fff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAFeCAIAAABIHNtzAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAATJJREFUeNrs3MsNgzAURUFelP6bdBP+Ow2wIwoOGlcwevewJdZax34vUkobsl7Hlg/rAax3RLgWluRdC0vyroUleSNiSd6IWJI3orZcC0vyroUleSNiSd6IWJI3IpbkjYgleSNiSd6IWJLHwvIluhaW5I2IJXkjYmH5ErGwfIlGxML6youcMxYW1u2sUgoWFtbtrForFhYW1jmrtYaFhYV1zuq9Y2FhYf0Va4yBhYWFhXWdNefEwsLCwnosa9O/8WNhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWH9/n0EGAA0MtXci2/KawAAAABJRU5ErkJggg==) top left repeat-x;
 }
@@ -203,6 +206,28 @@ input[type=password] {
 	margin: 0 auto;
 	width: 960px;
 	padding: 20px 0 0 0;
+}
+
+#board #content_wrapper {
+	bottom: 0;
+	left: 0;
+	margin: 0;
+	min-height: 0;
+	min-width: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 100;
+}
+
+#board #content_wrapper #content {
+	bottom: 43px;
+	left: 0;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	top: 50px;
+	width: auto;
 }
 
 #content .col {
@@ -242,10 +267,12 @@ input[type=password] {
 	left: 0;
 	position: absolute;
 	right: 0;
+	z-index: 999;
 }
 
 #footer_wrapper {
 	background: #d6ddce;
+	height: 43px;
 }
 
 #footer_wrapper footer {
@@ -255,4 +282,36 @@ input[type=password] {
 	font-size: 11px;
 	padding: 16px 0;
 	text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
+}
+
+/* board */
+#sticky_board {
+	height: 100%;
+	width: 100%;
+}
+
+#sticky_board > li {
+	border-left: 1px solid #999;
+	-moz-box-shadow: 0 0 6px 2px #999 inset;
+	-webkit-box-shadow: 0 0 6px 2px #999 inset;
+	box-shadow: 0 0 6px 2px #999 inset;
+	float: left;
+	height: 100%;
+	width: 33%;
+}
+
+#sticky_board > li#notstarted {
+	border: 0;
+}
+
+#sticky_board > li > div {
+	padding: 8px;
+	position: relative;
+}
+
+#sticky_board h2 {
+	border-bottom: 2px solid #d6ddce;
+	line-height: 21px;
+	margin: 8px;
+	padding: 0 0 4px 4px;
 }
