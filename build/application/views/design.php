@@ -12,15 +12,17 @@
 <section id="header_wrapper">
 	<header>
 		<div class="logo"><a href="/">Stickease - The only simple sticky system</a></div>
-		<form action="/login" method="post">
-			<ul>
-				<li><div class="text"><input type="text" placeholder="email" name="email" id="email"></div></li>
-				<li><input type="password" placeholder="password" name="password" id="password"></li>
-				<li><input type="checkbox" name="remember" id="remember"><label for="remember">remember me</label></li>
-				<li><button type="submit">sign in</button></li>
-				<li><a href="/forgot">forgot?</a></li>
-			</ul>
-		</form>
+		<div class="info">
+			<form action="/login" method="post">
+				<ul>
+					<li><div class="text"><input type="text" placeholder="email" name="email" id="email"></div></li>
+					<li><input type="password" placeholder="password" name="password" id="password"></li>
+					<li><input type="checkbox" name="remember" id="remember"><label for="remember">remember me</label></li>
+					<li><button type="submit">sign in</button></li>
+					<li><a href="/forgot">forgot?</a></li>
+				</ul>
+			</form>
+		</div>
 	</header>
 </section>
 <section id="content_wrapper">

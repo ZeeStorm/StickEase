@@ -125,7 +125,6 @@ input[type=password] {
 	left: 0;
 	right: 0;
 	top: 0;
-	height: 50px;
 	min-width: 960px;
 	background: #fcfff4;
 	background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
@@ -135,7 +134,11 @@ input[type=password] {
 	background: -ms-linear-gradient(top, #fcfff4 0%,#dfe5d7 40%,#b3bead 100%);
 	background: linear-gradient(top, #fcfff4 0%,#dfe5d7 40%,#b3bead 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
-	z-index: 1000;
+	z-index: 2000;
+}
+
+#board #header_wrapper {
+	min-width: 0;
 }
 
 #header_wrapper header {
@@ -145,17 +148,25 @@ input[type=password] {
 	background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATUAAAAzCAYAAAD2MZ+tAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABgRJREFUeNrs3eFu2zAMBGALyPu/sjZgK9B1SSyRd+RRof/EtZ0sS+MPR0p2x5xzXH+Wr8fv6zv7+tH2+Vn3/1xH/Hy3fXU/cpnG/RP48926Zf/Ovn7c+Pwef1fGt8frybb57cs8Fx6jltX3s/uosDz7fbxb333Nd8+/e90ZgNt0HDMXjvMghkAPiRoLEgWs5u7nOn4ntZW0sJPUPiV1WdMYIpW9S1yWdDYAqWwEQXZ33DQgNwnYIbZlYaaWwraT2rtksJvUPOlJcRmbJ9pwnMwDdPxdGnv23HfJa/W9zU3oJhg+Rhm6C1xUYquOE/r//s/696S229/xpJoqqQuVVFGpzNpbQ/XTIntp3nRWrQyNwkwdOhdoP5PaXWK7nAnN0wuL6L8he2CsROftla28j7sUGI0baqAAmdoYgwiVUpxEmfnq9/xY+MJHlaUekBAw7bwPb6nKgMxy/KcMFHhTWgRqCpgp9MYsn+ESatcLjJ7BdjmSGRouBHrKPT5PLw2Z2J59qSIHCtR7a5GoKSUsBl532/4/gZ/01N71UlbnVmWMpEb2yBj9M8voJnKkE9lLGyTIUL01VOnpSRaTCF3UiCqjR7bzeblQ857IaMgi4cqaqsGacBsFW3RJqt5bQ6aTGQyeSipbwuphLH3u+mWr29Cl6kpJWq3kVCp9s3Bj99dOQS0LJuQI5lb/zJvUPGUUY5oIo3TMvtSJMdkWmdYyUtspAwaKPbeo8jEMNCtqiBO7CnKnlJy7gEVeReDttUUOGFRIbSchZsLJg5oCaBlJrEI686a1bNiiLpfyIKaW2jKhSk9n1p7aap/tuu6nfez04S7g8awemlpPDjER2HJ51AiAzAraCmDZqEWktmzEqKAhkpqlHI0o/SL/rYyS03oZ1G5a80A1CJCtPg+V0jJRqwIcIolNBGYM1BClWcVtnmOj+2gV7p/GAA1RelpRQyWWWXgbPZ0xUUOf+Mw+VxZkrL6ZZ3BAbcTTk+ymA7qsqw5UgMtCDIrQg/jFe9X7etdfu+ud3fWxGK9z10NTneO2c23ovLTSWEZKU0GNjVA2XDTMmEktMrUx0ppiDw1ZbnpHPKtNvo1CLbvHFomUXDpjJ7VXCWBlpHQ3ba2mtYgUtvMee/lc1BgoZGCEgrpcUrOmNlaaUkpmnn2ZSS06rSnNWbNipZ7cMmA7AjU2FBFgDdL/xwOeBbABwCoCtshbEVmgiypHI1IcI4WFg5aBmgJoKn2yiDtvMO/GoYQa6+4dmSVoRopjw3Y0at6TXyXxoeCqiBobtgk6ttqIqBpEE/Tew5bHlbe8aqp/7bMOKnjXvVCvvGbm4EGVgYsJPHYCtylP+1Bcj/+CJyY1Sz9JeV0tpe0ee2pS2wHshLSWDVg6KCqoMfA4FTH2/dI+BbVKaU0VLZl0powaGxg1xFB/r7NRy0UNBZkSciVKzUqoIdA6MZUpgaaEWrW0pgZb2VKzGmoMtJRTGRKw6imtQlqLgoxRGiLRa9QScVNKZZYykz25Vg00NGyMybnIKxAUYSuFWUXUWClJIYVF3EYIldJUL2iPSGvsMjQzzZUsNU9ALQo3JdAQZScqpWXenoh5dUFmGRoB20dgVh01FaQiAFMBrQpqGbBlTgNpzA5DLRKpjESm0kerdDtvD2zI/ppqgjsWs9NQU09gDVrDlg3d8ZidiloFwKqAdsLtvT8RNg90jdphuKHxQz3nBNAG8SRShM2KCROr4zH7FNROSGPVQLM83/slrApbdopr1Bo32mswkWNjxihTJ/F5kfdeY0HWmDVqkNTEwos9sZbxh4pVryhYfQ4TNitKUdg1ah+Gm0Jpibo3GjqdVfljxszUlnH9KAq3Rq2Bg+Gl1jurBhkbuKq9tk5ljRo1vUVtiyo1R6HfF/u60KiEhsStUesFmt4US03VUU/0yTkBxyiWpJ3KGrWU9JZRamZhVn2gwINbVEnaqaxRKwscGjMGZBWv/UQBp4pbL41aCG7KmFWGLAo4Jdwas0atDHC78EVhNgI/F9YJmzlogAKrT8hG7Ujg1CFT76llA9eQJS6/BBgASKWKcKAvHzYAAAAASUVORK5CYII=) top left no-repeat;
 }
 
-#header_wrapper header form {
-	float: right;
-	padding: 10px 0;
+#board #header_wrapper header {
+	width: 100%;
 }
 
-#header_wrapper header form ul li {
+#header_wrapper header div.info {
+	float: right;
+	padding: 10px 8px;
+}
+
+#header_wrapper header div.info ul div.selector {
+	margin: 2px 0 0;
+}
+
+#header_wrapper header div.info ul li {
 	float: left;
 	padding: 0 4px 0 0;
 }
 
-#header_wrapper header form ul li a {
+#header_wrapper header div.info ul li a {
 	display: block;
 	font-size: 13px;
 	height: 20px;
@@ -165,11 +176,11 @@ input[type=password] {
 	text-shadow: 1px 1px 0 rgba(225,225,225,0.4);
 }
 
-#header_wrapper header form li div.checker {
+#header_wrapper header div.info li div.checker {
 	margin: 5px 3px 0 0;
 }
 
-#header_wrapper header form li label {
+#header_wrapper header div.info li label {
 	cursor: pointer;
 	display: block;
 	float: left;
@@ -267,7 +278,7 @@ input[type=password] {
 	left: 0;
 	position: absolute;
 	right: 0;
-	z-index: 999;
+	z-index: 1999;
 }
 
 #footer_wrapper {
@@ -280,7 +291,7 @@ input[type=password] {
 	margin: 0 auto;
 	color: #333;
 	font-size: 11px;
-	padding: 16px 0;
+	padding: 16px 8px;
 	text-shadow: 1px 1px 0 rgba(255,255,255,0.4);
 }
 
