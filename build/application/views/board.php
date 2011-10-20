@@ -26,7 +26,7 @@
 					<option>bryan conzone</option>
 				</select></li>
 				<li><select>
-					<option selected="selected">Project Stickea.se</option>
+					<option selected="selected">Project Stickease</option>
 					<option>DealerNinja.com - Homepage</option>
 					<option>CarNinja.com</option>
 				</select></li>
@@ -41,7 +41,7 @@
 			<li id="notstarted">
 				<h2>not started</h2>
 				<div>
-					<ul class="sticky_list">
+					<ul class="sticky_list clearfix">
 						<li class="sticky med">
 							<div class="qf">
 								<div class="front">
@@ -120,10 +120,10 @@
 					</ul>
 				</div>
 			</li>
-			<li id="assigned to">
+			<li id="assignedto">
 				<h2>assigned to</h2>
 				<div>
-					<ul class="user_list">
+					<ul class="user_list clearfix">
 						<li class="user">james wagoner</li>
 						<li class="user">jimmy thomas</li>
 						<li class="user">john doe</li>
@@ -134,7 +134,7 @@
 			<li id="completed">
 					<h2>completed</h2>
 				<div>
-					<ul class="sticky_list">
+					<ul class="sticky_list clearfix">
 					</ul>
 				</div>
 			</li>
@@ -153,5 +153,6 @@
 <script type="text/javascript" src="/js/jquery.jscrollpane.min.js"></script>
 <script type="text/javascript" src="/js/jquery.mousewheel.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/board.js"></script>
 </body>
 </html>

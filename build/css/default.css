@@ -317,7 +317,6 @@ input[type=password] {
 }
 
 #sticky_board > li > div {
-	padding: 8px;
 	position: relative;
 }
 
@@ -326,12 +325,25 @@ input[type=password] {
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
+	border: 1px solid #eee;
+	
 	float: left;
+	cursor: pointer;
+	text-align: center;
+	
 	margin: 0 8px 8px 0;
 	padding: 32px 8px 0;
-	text-align: center;
 	height: 40px;
 	width: 60px;
+}
+
+#sticky_board li ul.user_list > li.user.hover {
+	border: 1px solid #D6DDCE;
+}
+
+#sticky_board li ul.user_list > li.user.drop {
+	background: #D6DDCE;
+	border: 1px solid #D6DDCE;
 }
 
 #sticky_board h2 {
@@ -339,6 +351,11 @@ input[type=password] {
 	line-height: 21px;
 	margin: 8px 8px 0;
 	padding: 0 0 4px 4px;
+}
+
+#sticky_board ul.sticky_list,
+#sticky_board ul.user_list {
+	padding: 8px;
 }
 
 .sticky {
