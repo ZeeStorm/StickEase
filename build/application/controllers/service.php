@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Apiraw extends CI_Controller
+class Service extends CI_Controller
 {
 	private function getInput()
 	{

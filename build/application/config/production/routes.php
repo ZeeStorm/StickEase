@@ -38,20 +38,13 @@
 |
 */
 
-$route['default_controller'] = 'home';
-$route['404_override'] = 'home';
+$route[ 'default_controller' ] = 'home';
+$route[ '404_override' ] = 'home';
 
-$route['test'] = 'home/test';
+$route[ 'board' ] = 'home/board';
 
-//$route[ '(:any)' ] = 'home/index';
+$route[ 'service/(:any)' ] = 'service/index/$1';
 
-$route[ 'twitter/callback' ] = 'twitter/callback';
-$route[ 'twitter/auth' ] = 'twitter/auth';
-
-$route[ 'internal/(:any)' ] = 'internal/$1';
-
-$route[ 'apiraw/(:any)/(:any)/(:any)' ] = 'apiraw/pass/$1/$2/$3';
-$route[ 'apiraw/(:any)' ] = 'apiraw/index/$1';
 
 
 /* End of file routes.php */

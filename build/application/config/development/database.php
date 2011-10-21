@@ -48,9 +48,9 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'stageio';
-$db['default']['password'] = 'd3vst4g31ng';
-$db['default']['database'] = 'stage';
+$db['default']['username'] = 'sticky';
+$db['default']['password'] = 'd3vst1ckm3';
+$db['default']['database'] = 'stickease';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

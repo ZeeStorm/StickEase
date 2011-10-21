@@ -36,13 +36,5 @@ define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
-// oauth settings
-// twitter
-define('TWITTER_CONSUMER_KEY', 'HghorprLTM72M9keLUIGw');
-define('TWITTER_CONSUMER_SECRET', 'dBIzPZtI0uQTXTPfTlrtZObso5btJOiaiovLbuj3dBU');
-define('TWITTER_OAUTH_CALLBACK', 'http://s.io/twitter/callback');
-
-define('API_DOMAIN', 'api.s.io');
-
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
