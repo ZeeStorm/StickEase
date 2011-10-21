@@ -16,6 +16,11 @@ class Home extends Base {
 	{
 		$this->load->view( 'board' );
 	}
+
+	function testapi()
+	{
+		echo json_encode( $this->api->callMethod( 'board.get_by_slug', array( 'slug' => 'team-zx2' )));
+	}
 }
 
 /* End of file welcome.php */
