@@ -1,6 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+require_once( 'base.php' );
+class Home extends Base {
 	public function index()
 	{
 		$this->load->view( 'design' );
@@ -9,6 +10,11 @@ class Home extends CI_Controller {
 	function board()
 	{
 		$this->load->view( 'board' );
+	}
+
+	function testapi()
+	{
+		echo json_encode( $this->api->callMethod( 'board.get_by_slug', array( 'slug' => 'team-zx2' )));
 	}
 }
 
