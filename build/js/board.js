@@ -1,7 +1,7 @@
 $(function() {
 	// since everything is very dynamic, instead of relying on hardcoded values, pre-emp all of this
 	// we store as many references as we can to speed up the resize() function
-	var isMobile = true,
+	var isMobile = false,
 		borderWidth = 4,
 		jspUpdateTimer,
 		$content = $('#content'),
@@ -13,8 +13,27 @@ $(function() {
 		$stickyBoardLastItem = $stickyBoardItems.last(),
 		//$divHeightUpd = $('#sticky_board > li > div'),
 		$stickyBoardItemsJsp = $stickyBoardItems.children('div'),
-		initBoard = function() { // this duplicates some of the functionality 
+		initBoard = function() {
 			updateBoard();
+			
+			$('.sticky_list', $stickyBoard).sortable({
+				'containment': '#sticky_board',
+				'opacity': 0.4,
+				'placeholder': 'placeholder'
+			}).disableSelection();
+			
+			$('.user_list > li.user', $stickyBoard).droppable({
+				accept: '.sticky',
+				hoverClass: 'hover',
+				drop: function( event, ui ) {
+					//var $item = $( this );
+					//var $list = $( $item.find( "a" ).attr( "href" ) ).find( ".connectedSortable" );
+	
+					ui.draggable.hide( 'slow', function() {
+						//$( this ).appendTo( $list ).show( "slow" );
+					});
+				}
+			});
 			
 			if (isMobile) {
 				$stickyBoardItemsJsp.jScrollPane({'showArrows':true});

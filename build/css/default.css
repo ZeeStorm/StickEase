@@ -355,7 +355,7 @@ input[type=password] {
 
 #sticky_board ul.sticky_list,
 #sticky_board ul.user_list {
-	padding: 8px;
+	padding: 8px 8px 68px;
 }
 
 .sticky {
@@ -363,10 +363,18 @@ input[type=password] {
 	margin: 0 8px 8px 0;
 }
 
+.sticky_list > .placeholder {
+	border: 2px dashed #D6DDCE;
+	float: left;
+	height: 126px;
+	margin: 0 8px 8px 0;
+	width: 126px;
+}
+
 .sticky > div {
 	position: relative;
-	height: 140px;
-	width: 140px;
+	height: 130px;
+	width: 130px;
 }
 
 .sticky div.front,
@@ -377,8 +385,8 @@ input[type=password] {
 	left: 0;
 	right: 0;
 	
-	height: 140px;
-	width: 140px;
+	height: 130px;
+	width: 130px;
 	z-index: 200;
 }
 
@@ -389,8 +397,8 @@ input[type=password] {
 .sticky div.front > div,
 .sticky div.back > div {	
 	padding: 8px;
-	height: 122px;
-	width: 122px;
+	height: 112px;
+	width: 112px;
 	position: relative;
 
 	line-height: 13px;
@@ -414,7 +422,7 @@ input[type=password] {
 
 .sticky div.back > div {
 	padding-top: 20px;
-	height: 110px;
+	height: 100px;
 
 	/* Default flipped color */
 	background: #fff0d8; /* Old browsers */

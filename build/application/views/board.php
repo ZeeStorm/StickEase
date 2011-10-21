@@ -46,7 +46,7 @@
 							<div class="qf">
 								<div class="front">
 									<div>
-										<p>this is a pending sticky! rawr rawr rawr rrrwqrwe wer ewr wer wer wer wer seruwer wer wek werkjhwerkwe werkjhwer kwe</p>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc gravida ligula in erat ultricies in euismod libero sodales. Quisque purus sed.</p>
 										<button class="flip">&nbsp;</button>
 									</div>
 								</div>
