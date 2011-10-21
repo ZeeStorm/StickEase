@@ -17,14 +17,17 @@ $(function() {
 			updateBoard();
 			
 			$('.sticky_list', $stickyBoard).sortable({
+				'cancel': ':input,button,ul.priority',
+				'connectWith': '.sticky_list',
 				'containment': '#sticky_board',
 				'opacity': 0.4,
-				'placeholder': 'placeholder'
+				'placeholder': 'placeholder',
+				'revert': 200
 			}).disableSelection();
 			
 			$('.user_list > li.user', $stickyBoard).droppable({
 				accept: '.sticky',
-				hoverClass: 'hover',
+				hoverClass: 'drop',
 				drop: function( event, ui ) {
 					//var $item = $( this );
 					//var $list = $( $item.find( "a" ).attr( "href" ) ).find( ".connectedSortable" );
@@ -34,6 +37,8 @@ $(function() {
 					});
 				}
 			});
+			
+			$('.sticky_list', $stickyBoard).sticky();
 			
 			if (isMobile) {
 				$stickyBoardItemsJsp.jScrollPane({'showArrows':true});
@@ -50,7 +55,16 @@ $(function() {
 			$stickyBoardItems.height(winHeight).width(liWidth);
 			$stickyBoardLastItem.width(($window.width() - borderWidth) - (liWidth * 2));
 			$stickyBoardItemsJsp.width(liWidth).height(winHeight - h2height);
-		};
+		}
+	
+	$.fn.sticky = function() {
+		$(this).each(function() {
+			$('ul.priority li', $(this)).tooltip({
+				'effect': 'fade',
+				'offset': [-3,0]
+			});
+		});
+	};
 	
 	initBoard();
 	$(window).resize(updateBoard);
@@ -77,9 +91,9 @@ $(function() {
 	});
 	
 	$('#board').delegate('.sticky div.front button.flip', 'click', function() {
-		$(this).closest('.qf').quickFlipper();
+		$(this).closest('.qf').quickFlipper({'noResize':true});
 	}).delegate('.sticky div.back button.done', 'click', function() {
-		$(this).closest('.qf').quickFlipper();
+		$(this).closest('.qf').quickFlipper({'noResize':true});
 	}).delegate('.sticky, .user', 'mouseenter', function() {
 		$(this).addClass('hover');
 	}).delegate('.sticky, .user', 'mouseleave', function() {

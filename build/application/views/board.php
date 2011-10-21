@@ -54,9 +54,9 @@
 									<div>
 										<p><strong>Unassigned</strong></p>
 										<ul class="priority">
-											<li class="high">&nbsp;</li>
-											<li class="med">&nbsp;</li>
-											<li class="low">&nbsp;</li>
+											<li class="high" title="high">&nbsp;</li>
+											<li class="med" title="medium">&nbsp;</li>
+											<li class="low" title="low">&nbsp;</li>
 										</ul>
 										<ul class="info">
 											<li class="created">Created: <span class="date">10/17/11 @ 12:14pm</span></li>
@@ -79,9 +79,9 @@
 									<div>
 										<p><strong>Unassigned</strong></p>
 										<ul class="priority">
-											<li class="high">&nbsp;</li>
-											<li class="med">&nbsp;</li>
-											<li class="low">&nbsp;</li>
+											<li class="high" title="high">&nbsp;</li>
+											<li class="med" title="medium">&nbsp;</li>
+											<li class="low" title="low">&nbsp;</li>
 										</ul>
 										<ul class="info">
 											<li class="created">Created: <span class="date">10/17/11 @ 12:14pm</span></li>
@@ -104,9 +104,9 @@
 									<div>
 										<p><strong>Unassigned</strong></p>
 										<ul class="priority">
-											<li class="high">&nbsp;</li>
-											<li class="med">&nbsp;</li>
-											<li class="low">&nbsp;</li>
+											<li class="high" title="high">&nbsp;</li>
+											<li class="med" title="medium">&nbsp;</li>
+											<li class="low" title="low">&nbsp;</li>
 										</ul>
 										<ul class="info">
 											<li class="created">Created: <span class="date">10/17/11 @ 12:14pm</span></li>
@@ -124,10 +124,10 @@
 				<h2>assigned to</h2>
 				<div>
 					<ul class="user_list clearfix">
-						<li class="user">james wagoner</li>
-						<li class="user">jimmy thomas</li>
-						<li class="user">john doe</li>
-						<li class="user">jane doe</li>
+						<li class="user"><p><img src="/images/icon_mw.png" title="james wagoner"></p><span>james wagoner</span></li>
+						<li class="user"><p><img src="/images/icon_mw.png" title="jimmy thomas"></p><span>jimmy thomas</span></li>
+						<li class="user"><p><img src="/images/icon_mw.png" title="john doe"></p><span>john doe</span></li>
+						<li class="user"><p><img src="/images/icon_mw.png" title="jane doe"></p><span>jane doe</span></li>
 					</ul>
 				</div>
 			</li>
@@ -148,6 +148,7 @@
 </section>
 <script type="text/javascript" src="/js/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="/js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="/js/jquery.tools.min.js"></script>
 <script type="text/javascript" src="/js/jquery.uniform.min.js"></script>
 <script type="text/javascript" src="/js/jquery.quickflip.min.js"></script>
 <script type="text/javascript" src="/js/jquery.jscrollpane.min.js"></script>

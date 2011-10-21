@@ -299,6 +299,17 @@ input[type=password] {
 	width: auto;
 }
 
+/* tooltips */
+div.tooltip {
+	background: #333;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	color: #fff;
+	padding: 2px 6px;
+	z-index: 5000;
+}
+
 /* board */
 #sticky_board {
 	height: 100%;
@@ -321,7 +332,6 @@ input[type=password] {
 }
 
 #sticky_board li ul.user_list > li.user {
-	background: #eee url(/images/icon_mw.png) no-repeat center 4px;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
@@ -332,9 +342,14 @@ input[type=password] {
 	text-align: center;
 	
 	margin: 0 8px 8px 0;
-	padding: 32px 8px 0;
-	height: 40px;
-	width: 60px;
+	padding: 8px;
+	height: 80px;
+	width: 80px;
+}
+
+#sticky_board li ul.user_list > li.user > p {
+	height: 38px;
+	line-height: 56px;
 }
 
 #sticky_board li ul.user_list > li.user.hover {
@@ -369,6 +384,10 @@ input[type=password] {
 	height: 126px;
 	margin: 0 8px 8px 0;
 	width: 126px;
+}
+
+.sticky_list > .placeholder > * {
+	display: none;
 }
 
 .sticky > div {
@@ -500,11 +519,15 @@ input[type=password] {
 	display: block;
 	float: left;
 	margin: 0 6px 0 0;
-	width: 15px;
-	height: 15px;
+	width: 31px;
+	height: 18px;
 	border: solid 1px #fff;
 	font-size: 0.1em;
 	text-indent: -9999px;
+}
+
+.sticky ul.priority li.low {
+	margin: 0;
 }
 
 .sticky.high ul.priority li.high,
