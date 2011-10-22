@@ -1,8 +1,13 @@
 $(function() {
+	if ($.support.touch) {
+		$('body').addClass('touch');
+	} else {
+		$('body').addClass('desktop');
+	}
+	
 	// since everything is very dynamic, instead of relying on hardcoded values, pre-emp all of this
 	// we store as many references as we can to speed up the resize() function
-	var isMobile = false,
-		borderWidth = 4,
+	var borderWidth = 4,
 		jspUpdateTimer,
 		$content = $('#content'),
 		$stickyBoard = $('#sticky_board'),
@@ -11,10 +16,11 @@ $(function() {
 		$headerWrapper = $('#header_wrapper'),
 		$stickyBoardItems = $stickyBoard.children('li'),
 		$stickyBoardLastItem = $stickyBoardItems.last(),
-		//$divHeightUpd = $('#sticky_board > li > div'),
-		$stickyBoardItemsJsp = $stickyBoardItems.children('div'),
+		$stickyBoardItemsDiv = $stickyBoardItems.children('div'),
 		initBoard = function() {
-			updateBoard();
+			if (!$.support.touch) {
+				updateBoard();
+			}
 			
 			// prep our not started and assigned to (sticky lists)
 			$('#notstarted .sticky_list, #assignedto .sticky_list', $stickyBoard).sticky_sort();
@@ -29,23 +35,39 @@ $(function() {
 			
 			// get every single sticky thats on the board prepped
 			$stickyBoard.sticky();
-			
-			if (isMobile) {
+			/*
+			if ($) {
 				$stickyBoardItemsJsp.jScrollPane({'showArrows':true});
 			}
+			*/
 		},
 		updateBoard = function() {
 			var $window = $(window),
 				headerHeight = $headerWrapper.outerHeight(),
-				winHeight = (($window.height() - headerHeight) - footerHeight),
-				liWidth = Math.floor(($window.width() - borderWidth) / 3);
+				winHeight = ($window.height() - headerHeight - footerHeight),
+				liWidth = Math.floor(($window.width() - borderWidth) / 3),
+				colHeight = [];
 			
-			$content.height(winHeight).css('top', headerHeight + 'px');
-			$stickyBoard.height(winHeight);
-			$stickyBoardItems.height(winHeight).width(liWidth);
+			if (!$.support.touch) {
+				$content.height(winHeight).css('top', headerHeight + 'px');
+				$stickyBoard.height(winHeight);
+				$stickyBoardItems.height(winHeight);
+				$stickyBoardItemsDiv.height(winHeight - h2height);
+			} else {
+				$content.css('min-height', winHeight + 'px');
+				$stickyBoard.css('min-height', winHeight + 'px');
+				$stickyBoardItems.css('min-height', winHeight +'px');
+				$stickyBoardItemsDiv.css('min-height', (winHeight - h2height) + 'px');
+				
+				$('ul.sticky_list.active, ul.user_list.active', $stickyBoardItems).each(function() {
+					colHeight.push($(this).height());
+				}).height(Math.max.apply(this, colHeight));
+			}
+			
+			$stickyBoardItems.width(liWidth);
 			$stickyBoardLastItem.width(($window.width() - borderWidth) - (liWidth * 2));
-			$stickyBoardItemsJsp.width(liWidth).height(winHeight - h2height);
-		}
+			$stickyBoardItemsDiv.width(liWidth);
+		};
 	
 	$.fn.sticky = function() {
 		return $(this).each(function() {
@@ -65,26 +87,26 @@ $(function() {
 			'opacity': 0.4,
 			'placeholder': 'placeholder',
 			'revert': 200,
-			'start': function(event, ui) {
-				ui.item.removeClass('hover');
-			}
+			'tolerance': 'pointer'
 		});
 	};
 	
 	$.fn.user_droppable = function() {
 		return $(this).droppable({
-			accept: 'li:not(#completed) .sticky',
-			hoverClass: 'drop',
-			drop: function( event, ui ) {
+			'accept': 'li:not(#completed) .sticky',
+			'hoverClass': 'drop',
+			'tolerance': 'pointer',
+			'drop': function( event, ui ) {
 				var $this = $(this),
-					$clone = ui.draggable.clone(true).appendTo($this.closest('li.sticky_column'));
+					pos = $this.position(),
+					$clone = ui.draggable.clone(true).removeClass('hover').appendTo($this.closest('li.sticky_column'));
 				
 				ui.draggable.hide();
 				
 				$clone.animate({
 					opacity: 0,
-					top: '+=' + ($clone.height() / 2),
-					left: '+=' + ($clone.width() / 2),
+					top: (pos.top + Math.floor($this.height() / 2)) + 'px',
+					left: (pos.left + Math.floor($this.width() / 2)) + 'px',
 					height: 1,
 					width: 1
 				}, 400, function() {
@@ -102,15 +124,16 @@ $(function() {
 	
 	$.fn.board_droppable = function() {
 		return $(this).droppable({
-			accept: '.sticky',
-			hoverClass: 'drop',
-			drop: function( event, ui ) {
+			'accept': '.sticky',
+			'hoverClass': 'drop',
+			'tolerance': 'pointer',
+			'drop': function( event, ui ) {
 				var $this = $(this),
 					$stickyList = $('ul.sticky_list', $this),
 					top = parseInt($stickyList.css('padding-top').replace('px','')),
 					left = parseInt($stickyList.css('padding-left').replace('px','')),
 					position = $stickyList.position(),
-					$clone = ui.draggable.clone(true).prependTo($stickyList),
+					$clone = ui.draggable.clone(true).removeClass('hover').prependTo($stickyList),
 					$dropped = $('<li class="dropped_sticky"></li>').prependTo($stickyList).animate({
 						width: ui.draggable.width()
 					}, 500);
@@ -144,7 +167,7 @@ $(function() {
 	initBoard();
 	$(window).resize(updateBoard);
 	
-	if (isMobile) {
+	/*if (isMobile) {
 		$(window).resize(function() {
 			jspUpdateTimer = setTimeout(function() {
 				$stickyBoardItemsJsp.each(function() {
@@ -154,7 +177,7 @@ $(function() {
 				jspUpdateTimer = null;
 			}, 100);
 		});
-	}
+	}*/
 	
 	$('#board').delegate('li.sticky_column:not(#completed) .sticky ul.priority li', 'click', function() {
 		var $this = $(this),

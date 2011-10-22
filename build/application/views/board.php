@@ -39,9 +39,9 @@
 	<div id="content">
 		<ul id="sticky_board" class="clearfix">
 			<li id="notstarted" class="sticky_column">
-				<h2>not started</h2>
+				<h2>not&nbsp;started</h2>
 				<div>
-					<ul class="sticky_list clearfix">
+					<ul class="sticky_list active clearfix">
 						<li class="sticky med">
 							<div class="qf">
 								<div class="front">
@@ -121,9 +121,9 @@
 				</div>
 			</li>
 			<li id="assignedto" class="sticky_column">
-				<h2>assigned to</h2>
+				<h2>assigned&nbsp;to</h2>
 				<div>
-					<ul class="user_list clearfix">
+					<ul class="user_list active clearfix">
 						<li class="user"><p><img src="/images/icon_mw.png" title="james wagoner"></p><span>james wagoner</span></li>
 						<li class="user"><p><img src="/images/icon_mw.png" title="jimmy thomas"></p><span>jimmy thomas</span></li>
 						<li class="user"><p><img src="/images/icon_mw.png" title="john doe"></p><span>john doe</span></li>
@@ -134,7 +134,7 @@
 			<li id="completed" class="sticky_column">
 					<h2>completed</h2>
 				<div>
-					<ul class="sticky_list clearfix">
+					<ul class="sticky_list active clearfix">
 					</ul>
 				</div>
 			</li>

@@ -295,12 +295,12 @@ div.uploader.disabled span.action {
 /* Select */
 div.selector {
   margin-bottom: 20px;
-  width: 190px;
+  width: 160px;
   font-size: 12px;
 }
 
 div.selector select {
-  width: 190px;
+  width: 160px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 12px
 	border: solid 1px #fff;
@@ -313,7 +313,7 @@ div.selector span {
 
 div.selector span {
   color: #666;
-  width: 158px;
+  width: 128px;
   text-shadow: 0 1px 0 #fff;
 }
 
