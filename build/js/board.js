@@ -17,49 +17,10 @@ $(function() {
 			updateBoard();
 			
 			// prep our not started and assigned to (sticky lists)
-			$('#notstarted .sticky_list, #assignedto .sticky_list', $stickyBoard).sticky_sort(true);
+			$('#notstarted .sticky_list, #assignedto .sticky_list', $stickyBoard).sticky_sort();
 			
 			// prep our completed board, it doesn't change like the others can
-			$('#completed', $stickyBoard).droppable({
-				accept: '.sticky',
-				hoverClass: 'drop',
-				drop: function( event, ui ) {
-					//var $item = $( this );
-					//var $list = $( $item.find( "a" ).attr( "href" ) ).find( ".connectedSortable" );
-					var $this = $(this),
-						$stickyList = $('ul.sticky_list', $this),
-						top = parseInt($stickyList.css('padding-top').replace('px','')),
-						left = parseInt($stickyList.css('padding-left').replace('px','')),
-						position = $stickyList.position(),
-						$clone = ui.draggable.clone(true).prependTo($stickyList),
-						$dropped = $('<li class="dropped_sticky"></li>').prependTo($stickyList).animate({
-							width: ui.draggable.width()
-						}, 500);
-					
-					ui.draggable.hide();
-					
-					$clone.animate({
-						top: (position.top + top) + 'px',
-						left: (position.left + left) + 'px',
-						opacity: 1
-					}, 500, 'easeOutBounce', function() {
-						$dropped.stop().remove();
-						
-						$clone.css({
-							position: 'static',
-							top: 'auto',
-							left: 'auto',
-							opacity: 1
-						}).removeClass('hover');
-						
-						ui.draggable.remove();
-						
-						return false;
-					});
-					
-					return false;
-				}
-			});
+			$('#completed', $stickyBoard).board_droppable();
 			
 			$('#sticky_board').disableSelection();
 			
@@ -87,7 +48,7 @@ $(function() {
 		}
 	
 	$.fn.sticky = function() {
-		$(this).each(function() {
+		return $(this).each(function() {
 			$('ul.priority li', $(this)).tooltip({
 				'effect': 'fade',
 				'offset': [-3,0]
@@ -96,41 +57,87 @@ $(function() {
 	};
 	
 	// jquery function since users can be added
-	$.fn.sticky_sort = function(connectWith) {
-		var opts = {
-				'cancel': ':input,button,ul.priority',
-				'containment': '#sticky_board',
-				'opacity': 0.4,
-				'placeholder': 'placeholder',
-				'revert': 200,
-				'start': function(event, ui) {
-					ui.item.removeClass('hover');
-				}
-			};
-		
-		if (connectWith === true) {
-			$.extend(opts, {'connectWith': '.sticky_list'});
-		}
-		
-		$(this).each(function() {
-			$(this).sortable(opts);
+	$.fn.sticky_sort = function() {
+		return $(this).sortable({
+			'connectWith': '.sticky_list',
+			'cancel': ':input,button,ul.priority',
+			'containment': '#sticky_board',
+			'opacity': 0.4,
+			'placeholder': 'placeholder',
+			'revert': 200,
+			'start': function(event, ui) {
+				ui.item.removeClass('hover');
+			}
 		});
 	};
 	
 	$.fn.user_droppable = function() {
-		$(this).each(function() {
-			$(this).droppable({
-				accept: 'li:not(#completed) .sticky',
-				hoverClass: 'drop',
-				drop: function( event, ui ) {
-					//var $item = $( this );
-					//var $list = $( $item.find( "a" ).attr( "href" ) ).find( ".connectedSortable" );
+		return $(this).droppable({
+			accept: 'li:not(#completed) .sticky',
+			hoverClass: 'drop',
+			drop: function( event, ui ) {
+				var $this = $(this),
+					$clone = ui.draggable.clone(true).appendTo($this.closest('li.sticky_column'));
+				
+				ui.draggable.hide();
+				
+				$clone.animate({
+					opacity: 0,
+					top: '+=' + ($clone.height() / 2),
+					left: '+=' + ($clone.width() / 2),
+					height: 1,
+					width: 1
+				}, 400, function() {
+					$clone.stop().remove();
+					
+					ui.draggable.remove();
+					
+					return false;
+				});
+				
+				return false;
+			}
+		});
+	};
 	
-					ui.draggable.hide( 'slow', function() {
-						//$( this ).appendTo( $list ).show( "slow" );
-					});
-				}
-			});
+	$.fn.board_droppable = function() {
+		return $(this).droppable({
+			accept: '.sticky',
+			hoverClass: 'drop',
+			drop: function( event, ui ) {
+				var $this = $(this),
+					$stickyList = $('ul.sticky_list', $this),
+					top = parseInt($stickyList.css('padding-top').replace('px','')),
+					left = parseInt($stickyList.css('padding-left').replace('px','')),
+					position = $stickyList.position(),
+					$clone = ui.draggable.clone(true).prependTo($stickyList),
+					$dropped = $('<li class="dropped_sticky"></li>').prependTo($stickyList).animate({
+						width: ui.draggable.width()
+					}, 500);
+				
+				ui.draggable.hide();
+				
+				$clone.animate({
+					top: (position.top + top) + 'px',
+					left: (position.left + left) + 'px',
+					opacity: 1
+				}, 500, 'easeOutBounce', function() {
+					$dropped.stop().remove();
+					
+					$clone.css({
+						position: 'static',
+						top: 'auto',
+						left: 'auto',
+						opacity: 1
+					}).removeClass('hover');
+					
+					ui.draggable.remove();
+					
+					return false;
+				});
+				
+				return false;
+			}
 		});
 	};
 	
