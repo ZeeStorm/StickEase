@@ -16,29 +16,58 @@ $(function() {
 		initBoard = function() {
 			updateBoard();
 			
-			$('.sticky_list', $stickyBoard).sortable({
-				'cancel': ':input,button,ul.priority',
-				'connectWith': '.sticky_list',
-				'containment': '#sticky_board',
-				'opacity': 0.4,
-				'placeholder': 'placeholder',
-				'revert': 200
-			}).disableSelection();
+			// prep our not started and assigned to (sticky lists)
+			$('#notstarted .sticky_list, #assignedto .sticky_list', $stickyBoard).sticky_sort(true);
 			
-			$('.user_list > li.user', $stickyBoard).droppable({
+			// prep our completed board, it doesn't change like the others can
+			$('#completed', $stickyBoard).droppable({
 				accept: '.sticky',
 				hoverClass: 'drop',
 				drop: function( event, ui ) {
 					//var $item = $( this );
 					//var $list = $( $item.find( "a" ).attr( "href" ) ).find( ".connectedSortable" );
-	
-					ui.draggable.hide( 'slow', function() {
-						//$( this ).appendTo( $list ).show( "slow" );
+					var $this = $(this),
+						$stickyList = $('ul.sticky_list', $this),
+						top = parseInt($stickyList.css('padding-top').replace('px','')),
+						left = parseInt($stickyList.css('padding-left').replace('px','')),
+						position = $stickyList.position(),
+						$clone = ui.draggable.clone(true).prependTo($stickyList),
+						$dropped = $('<li class="dropped_sticky"></li>').prependTo($stickyList).animate({
+							width: ui.draggable.width()
+						}, 500);
+					
+					ui.draggable.hide();
+					
+					$clone.animate({
+						top: (position.top + top) + 'px',
+						left: (position.left + left) + 'px',
+						opacity: 1
+					}, 500, 'easeOutBounce', function() {
+						$dropped.stop().remove();
+						
+						$clone.css({
+							position: 'static',
+							top: 'auto',
+							left: 'auto',
+							opacity: 1
+						}).removeClass('hover');
+						
+						ui.draggable.remove();
+						
+						return false;
 					});
+					
+					return false;
 				}
 			});
 			
-			$('.sticky_list', $stickyBoard).sticky();
+			$('#sticky_board').disableSelection();
+			
+			// prep our user list items
+			$('.user_list > li.user', $stickyBoard).user_droppable();
+			
+			// get every single sticky thats on the board prepped
+			$stickyBoard.sticky();
 			
 			if (isMobile) {
 				$stickyBoardItemsJsp.jScrollPane({'showArrows':true});
@@ -66,6 +95,45 @@ $(function() {
 		});
 	};
 	
+	// jquery function since users can be added
+	$.fn.sticky_sort = function(connectWith) {
+		var opts = {
+				'cancel': ':input,button,ul.priority',
+				'containment': '#sticky_board',
+				'opacity': 0.4,
+				'placeholder': 'placeholder',
+				'revert': 200,
+				'start': function(event, ui) {
+					ui.item.removeClass('hover');
+				}
+			};
+		
+		if (connectWith === true) {
+			$.extend(opts, {'connectWith': '.sticky_list'});
+		}
+		
+		$(this).each(function() {
+			$(this).sortable(opts);
+		});
+	};
+	
+	$.fn.user_droppable = function() {
+		$(this).each(function() {
+			$(this).droppable({
+				accept: 'li:not(#completed) .sticky',
+				hoverClass: 'drop',
+				drop: function( event, ui ) {
+					//var $item = $( this );
+					//var $list = $( $item.find( "a" ).attr( "href" ) ).find( ".connectedSortable" );
+	
+					ui.draggable.hide( 'slow', function() {
+						//$( this ).appendTo( $list ).show( "slow" );
+					});
+				}
+			});
+		});
+	};
+	
 	initBoard();
 	$(window).resize(updateBoard);
 	
@@ -81,7 +149,7 @@ $(function() {
 		});
 	}
 	
-	$('#board').delegate('.sticky ul.priority li', 'click', function() {
+	$('#board').delegate('li.sticky_column:not(#completed) .sticky ul.priority li', 'click', function() {
 		var $this = $(this),
 			$sticky = $this.closest('.sticky');
 		

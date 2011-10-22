@@ -38,7 +38,7 @@
 <section id="content_wrapper">
 	<div id="content">
 		<ul id="sticky_board" class="clearfix">
-			<li id="notstarted">
+			<li id="notstarted" class="sticky_column">
 				<h2>not started</h2>
 				<div>
 					<ul class="sticky_list clearfix">
@@ -120,7 +120,7 @@
 					</ul>
 				</div>
 			</li>
-			<li id="assignedto">
+			<li id="assignedto" class="sticky_column">
 				<h2>assigned to</h2>
 				<div>
 					<ul class="user_list clearfix">
@@ -131,7 +131,7 @@
 					</ul>
 				</div>
 			</li>
-			<li id="completed">
+			<li id="completed" class="sticky_column">
 					<h2>completed</h2>
 				<div>
 					<ul class="sticky_list clearfix">

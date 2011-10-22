@@ -313,6 +313,7 @@ div.tooltip {
 /* board */
 #sticky_board {
 	height: 100%;
+	position: relative;
 	width: 100%;
 }
 
@@ -323,15 +324,24 @@ div.tooltip {
 	width: 33%;
 }
 
+#sticky_board #completed.drop {
+	background: #f1f5e9;
+}
+
 #sticky_board > li#notstarted {
 	border: 0;
 }
 
-#sticky_board > li > div {
-	position: relative;
-}
-
 #sticky_board li ul.user_list > li.user {
+	background: #fff;
+	background: -moz-linear-gradient(top, #ffffff 0%, #f1f5e9 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f1f5e9));
+	background: -webkit-linear-gradient(top, #ffffff 0%,#f1f5e9 100%);
+	background: -o-linear-gradient(top, #ffffff 0%,#f1f5e9 100%);
+	background: -ms-linear-gradient(top, #ffffff 0%,#f1f5e9 100%);
+	background: linear-gradient(top, #ffffff 0%,#f1f5e9 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f1f5e9',GradientType=0 );
+	
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
@@ -371,6 +381,13 @@ div.tooltip {
 #sticky_board ul.sticky_list,
 #sticky_board ul.user_list {
 	padding: 8px 8px 68px;
+}
+
+#completed .dropped_sticky {
+	float: left;
+	margin: 0 8px 8px 0;
+	height: 130px;
+	width: 1px;
 }
 
 .sticky {
@@ -509,6 +526,10 @@ div.tooltip {
 }
 
 /* Priority selector */
+#completed .sticky ul.priority {
+	display: none;
+}
+
 .sticky ul.priority {
 	display: block;
 	width: 100%;
