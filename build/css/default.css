@@ -418,7 +418,10 @@ div.tooltip {
 	border-bottom: 2px solid #d6ddce;
 	line-height: 21px;
 	margin: 8px 8px 0;
+	overflow: hidden;
 	padding: 0 0 4px 4px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 #sticky_board ul.sticky_list,

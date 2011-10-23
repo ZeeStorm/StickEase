@@ -3,6 +3,7 @@
 <head>
 	<title>Stickease - Simply Stickys</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=640">
 	<!--[if lt IE 9]>
 	<script src="/js/html5.js"></script>
 	<![endif]-->
