@@ -47,6 +47,11 @@ div.selector {
 	height: 26px;
 }
 
+div.selector,
+div.selector * {
+	cursor: pointer;
+}
+
 div.selector span {
   background-position: right 0px;
   height: 26px;
@@ -295,7 +300,7 @@ div.uploader.disabled span.action {
 /* Select */
 div.selector {
   margin-bottom: 20px;
-  width: 160px;
+  width: 156px;
   font-size: 12px;
 }
 

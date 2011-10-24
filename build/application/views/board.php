@@ -2,8 +2,9 @@
 <html>
 <head>
 	<title>Stickease - Simply Stickys</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=640">
+	<meta name="apple-mobile-web-app-capable" content="yes">
 	<!--[if lt IE 9]>
 	<script src="/js/html5.js"></script>
 	<![endif]-->
@@ -20,18 +21,30 @@
 		<div class="logo"><a href="/">Stickease - The only simple sticky system</a></div>
 		<div class="info">
 			<ul class="clearfix">
-				<li><select>
-					<option selected="selected">scrum view</option>
-					<option>james wagoner (me)</option>
-					<option>jimmy thomas</option>
-					<option>bryan conzone</option>
+				<li><select id="view">
+					<option selected="selected" value="0">scrum view</option>
+					<option value="1">james wagoner (me)</option>
+					<option value="2">jimmy thomas</option>
+					<option value="3">john doe</option>
+					<option value="4">jane doe</option>
 				</select></li>
 				<li><select>
 					<option selected="selected">Project Stickease</option>
 					<option>DealerNinja.com - Homepage</option>
 					<option>CarNinja.com</option>
 				</select></li>
-				<li><a href="#">james wagoner ..</a></li>
+				<li class="dropdown">
+					<button class="clearfix"><span>james wagoner</span></button>
+					<ul>
+						<li><a href="#">new project</a></li>
+						<li><a href="#">add user</a></li>
+						<li><a href=""></a></li>
+						<li class="divider"></li>
+						<li><a href="/settings">settings</a></li>
+						<li class="divider"></li>
+						<li><a href="/logout">logout</a></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 	</header>
@@ -125,10 +138,171 @@
 				<h2>assigned&nbsp;to</h2>
 				<div>
 					<ul class="user_list active clearfix">
-						<li class="user"><p><img src="/images/icon_mw.png" title="james wagoner"></p><span>james wagoner</span></li>
-						<li class="user"><p><img src="/images/icon_mw.png" title="jimmy thomas"></p><span>jimmy thomas</span></li>
-						<li class="user"><p><img src="/images/icon_mw.png" title="john doe"></p><span>john doe</span></li>
-						<li class="user"><p><img src="/images/icon_mw.png" title="jane doe"></p><span>jane doe</span></li>
+						<li class="user" data-user_id="1" data-user_display="james wagoner"><p><img src="/images/icon_mw.png" title="james wagoner"></p><span>james wagoner</span></li>
+						<li class="user" data-user_id="2" data-user_display="jimmy thomas"><p><img src="/images/icon_mw.png" title="jimmy thomas"></p><span>jimmy thomas</span></li>
+						<li class="user" data-user_id="3" data-user_display="john doe"><p><img src="/images/icon_mw.png" title="john doe"></p><span>john doe</span></li>
+						<li class="user" data-user_id="4" data-user_display="jane doe"><p><img src="/images/icon_mw.png" title="jane doe"></p><span>jane doe</span></li>
+						<li class="user new"><p><img src="/images/icon_plus.png"></p><span>add user</span></li>
+					</ul>
+					<ul id="user_1" class="sticky_list clearfix">
+						<li class="sticky med">
+							<div class="qf">
+								<div class="front">
+									<div>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc gravida ligula in erat ultricies in euismod libero sodales. Quisque purus sed.</p>
+										<button class="flip">&nbsp;</button>
+									</div>
+								</div>
+								<div class="back">
+									<div>
+										<p><strong>Unassigned</strong></p>
+										<ul class="priority">
+											<li class="high" title="high">&nbsp;</li>
+											<li class="med" title="medium">&nbsp;</li>
+											<li class="low" title="low">&nbsp;</li>
+										</ul>
+										<ul class="info">
+											<li class="created">Created: <span class="date">10/17/11 @ 12:14pm</span></li>
+										</ul>
+										<button class="delete">Delete</button>
+										<button class="done">Done</button>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="sticky low">
+							<div class="qf">
+								<div class="front">
+									<div>
+										<p>this is a pending sticky! rawr rawr rawr rrrwqrwe wer ewr wer wer wer wer seruwer wer wek werkjhwerkwe werkjhwer kwe</p>
+										<button class="flip">&nbsp;</button>
+									</div>
+								</div>
+								<div class="back">
+									<div>
+										<p><strong>Unassigned</strong></p>
+										<ul class="priority">
+											<li class="high" title="high">&nbsp;</li>
+											<li class="med" title="medium">&nbsp;</li>
+											<li class="low" title="low">&nbsp;</li>
+										</ul>
+										<ul class="info">
+											<li class="created">Created: <span class="date">10/17/11 @ 12:14pm</span></li>
+										</ul>
+										<button class="delete">Delete</button>
+										<button class="done">Done</button>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="sticky high">
+							<div class="qf">
+								<div class="front">
+									<div>
+										<p>this is a pending sticky! rawr rawr rawr rrrwqrwe wer ewr wer wer wer wer seruwer wer wek werkjhwerkwe werkjhwer kwe</p>
+										<button class="flip">&nbsp;</button>
+									</div>
+								</div>
+								<div class="back">
+									<div>
+										<p><strong>Unassigned</strong></p>
+										<ul class="priority">
+											<li class="high" title="high">&nbsp;</li>
+											<li class="med" title="medium">&nbsp;</li>
+											<li class="low" title="low">&nbsp;</li>
+										</ul>
+										<ul class="info">
+											<li class="created">Created: <span class="date">10/17/11 @ 12:14pm</span></li>
+										</ul>
+										<button class="delete">Delete</button>
+										<button class="done">Done</button>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul id="user_2" class="sticky_list clearfix">
+						<li class="sticky high">
+							<div class="qf">
+								<div class="front">
+									<div>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc gravida ligula in erat ultricies in euismod libero sodales. Quisque purus sed.</p>
+										<button class="flip">&nbsp;</button>
+									</div>
+								</div>
+								<div class="back">
+									<div>
+										<p><strong>Unassigned</strong></p>
+										<ul class="priority">
+											<li class="high" title="high">&nbsp;</li>
+											<li class="med" title="medium">&nbsp;</li>
+											<li class="low" title="low">&nbsp;</li>
+										</ul>
+										<ul class="info">
+											<li class="created">Created: <span class="date">10/17/11 @ 12:14pm</span></li>
+										</ul>
+										<button class="delete">Delete</button>
+										<button class="done">Done</button>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="sticky high">
+							<div class="qf">
+								<div class="front">
+									<div>
+										<p>this is an assigned sticky! rawr rawr rawr rrrwqrwe wer ewr wer wer wer wer seruwer wer wek werkjhwerkwe werkjhwer kwe</p>
+										<button class="flip">&nbsp;</button>
+									</div>
+								</div>
+								<div class="back">
+									<div>
+										<p><strong>Unassigned</strong></p>
+										<ul class="priority">
+											<li class="high" title="high">&nbsp;</li>
+											<li class="med" title="medium">&nbsp;</li>
+											<li class="low" title="low">&nbsp;</li>
+										</ul>
+										<ul class="info">
+											<li class="created">Created: <span class="date">10/17/11 @ 12:14pm</span></li>
+										</ul>
+										<button class="delete">Delete</button>
+										<button class="done">Done</button>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li class="sticky high">
+							<div class="qf">
+								<div class="front">
+									<div>
+										<p>this is an assigned sticky! rawr rawr rawr rrrwqrwe wer ewr wer wer wer wer seruwer wer wek werkjhwerkwe werkjhwer kwe</p>
+										<button class="flip">&nbsp;</button>
+									</div>
+								</div>
+								<div class="back">
+									<div>
+										<p><strong>Unassigned</strong></p>
+										<ul class="priority">
+											<li class="high" title="high">&nbsp;</li>
+											<li class="med" title="medium">&nbsp;</li>
+											<li class="low" title="low">&nbsp;</li>
+										</ul>
+										<ul class="info">
+											<li class="created">Created: <span class="date">10/17/11 @ 12:14pm</span></li>
+										</ul>
+										<button class="delete">Delete</button>
+										<button class="done">Done</button>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+					<ul id="user_3" class="sticky_list clearfix">
+						<li class="none">no stickys assigned to this user</li>
+					</ul>
+					<ul id="user_4" class="sticky_list clearfix">
+						<li class="none">no stickys assigned to this user</li>
 					</ul>
 				</div>
 			</li>
@@ -147,14 +321,24 @@
 		<p>&copy;2011 Stickease&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/about">About</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/legal/terms-of-use">Terms Of Use</a></p>
 	</footer>
 </section>
+<div id="add-user">
+	<p>Please provide the email address of the individual you want to invite to this project</p>
+	<form>
+		<input type="text" id="email">
+	</form>
+</div>
+<div id="new-project">
+	<p>What is the name of this new project?</p>
+	<form>
+		<input type="text" id="name">
+	</form>
+</div>
 <script type="text/javascript" src="/js/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="/js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="/js/jquery.ui.mouse.touch.js"></script>
 <script type="text/javascript" src="/js/jquery.tools.min.js"></script>
 <script type="text/javascript" src="/js/jquery.uniform.min.js"></script>
 <script type="text/javascript" src="/js/jquery.quickflip.min.js"></script>
-<script type="text/javascript" src="/js/jquery.jscrollpane.min.js"></script>
-<script type="text/javascript" src="/js/jquery.mousewheel.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
 <script type="text/javascript" src="/js/board.js"></script>
 </body>
