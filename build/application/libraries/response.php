@@ -1,29 +1,25 @@
 <?
-class Response
-{
-	public $response;
-	public $error = false;
-	public $errors = array();
+class response {
 
-	function __construct( $objResponse=null, $arrErrors=array())
+	var $success = true;
+	var $response = null;
+	//var $error = null;
+
+	public function response( $bSuccess=true )
 	{
-		$this->response = $objResponse;
-		$this->errors = $arrErrors;
+		$this->success = $bSuccess;
+		$this->response = new stdClass();
 
-		if( count( $arrErrors ) > 0 )
-		{
-			$this->error = true;
-		}
+		return $this;
 	}
 
-	function setResponse( $objResponse )
+	public function setError( $intCode, $strMsg )
 	{
-		$this->response = $objResponse;
+		$this->response = new err( (int) $intCode, $strMsg );
 	}
 
-	function setError( $strError )
+	public function setResponse( $objResponse )
 	{
-		array_push( $this->errors, $strError );
-		$this->error = true;
+		$this->response = $objResponse;
 	}
 }

@@ -1,5 +1,5 @@
 <?
-class svc_board
+class svc_user
 {
 	static function get_by_slug( $response, $options )
 	{

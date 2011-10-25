@@ -142,6 +142,12 @@ window.board_object = function() {
 		
 		// get every single sticky thats on the board prepped
 		$stickyBoard.sticky();
+		
+		// add misc stuff
+		$('#assignedto h2 span.icon_back', $stickyBoard).tooltip({
+			'effect': 'fade',
+			'offset': [-3,0]
+		});
 	};
 	
 	this.updateBoard = function() {
@@ -172,23 +178,22 @@ window.board_object = function() {
 	};
 	
 	this.changeUser = function(user_id, user_display) {
-		var $assignedto = $('#assignedto'),
-			text = 'assigned&nbsp;to';
+		var $assignedto = $('#assignedto');
 		
-		if (!user_id) {
-			$('.active:not(.user_list)', $assignedto).removeClass('active');
-			$('.user_list', $assignedto).addClass('active');
+		if (!user_id || !$assignedto.find('ul#user_' + user_id).addClass('active').length) {
+			$('ul.active:not(.user_list)', $assignedto).removeClass('active');
+			$('ul.user_list', $assignedto).addClass('active');
+			$assignedto.removeClass('user_view');
 		} else {
-			$assignedto.find('.active').removeClass('active');
-			
-			if (!user_id || !$assignedto.find('#user_' + user_id).addClass('active').length) {
-				$assignedto.find('.user_list').addClass('active');
-			} else {
-				text += ': ' + user_display;
-			}
+			$assignedto.find('ul.active:not(#user_' + user_id + ')').removeClass('active');
+			$assignedto.find('h2 span.user_display').remove();
+			$assignedto.find('h2 span.icon_back').before($('<span class="user_display"></span>').text(': ' + user_display).attr('title', user_display).tooltip({
+				'effect': 'fade',
+				'offset': [-3,0],
+				'predelay': 500
+			}));
+			$assignedto.addClass('user_view');
 		}
-		
-		$assignedto.children('h2').text(text);
 	};
 	
 	this.initBoard();
@@ -220,12 +225,72 @@ $(function() {
 	}).delegate('.sticky, .user', 'mouseleave', function() { // remove hover class on stickys and users
 		$(this).removeClass('hover');
 	}).delegate('ul.user_list li.user', 'click', function() { // user click
-		var $this = $(this);
+		var $this = $(this),
+			offset,
+			$adduser,
+			top;
 		
-		board.changeUser($this.data('user_id'), $this.data('user_display'));
+		if ($this.hasClass('add')) {
+			$adduser = $('#add-user');
+			offset = $this.offset();
+			top = (offset.top - Math.floor(($adduser.height() - $this.height()) / 2));
+			
+			if (top + $adduser.outerHeight(true) > $(window).height()) {
+				top = ($(window).height() - $adduser.outerHeight(true) - 10);
+			}
+			
+			$('body').addClass('has-overlay');
+			$adduser.addClass('overlay').css({
+				left: (offset.left - Math.floor(($adduser.width() - $this.width()) / 2)) + 'px',
+				top: top + 'px'
+			}).show().find('input').val('').focus();
+		} else {
+			board.changeUser($this.data('user_id'), $this.data('user_display'));
+		}
 	}).delegate('#view', 'change', function() {
 		var $this = $(this);
 		
 		board.changeUser($this.val(), $this.data('user_display'));
+	}).delegate('#assignedto.user_view > h2 span.icon_back', 'click', function() {
+		board.changeUser(0);
+	}).delegate('.overlay', 'mousedown', function(e) {
+		e.stopPropagation();
+	}).delegate('#header_wrapper div.info ul li.dropdown', 'mouseenter', function() {
+		$(this).addClass('hover');
+	}).delegate('#header_wrapper div.info ul li.dropdown', 'mouseleave', function() {
+		$(this).removeClass('hover');
+	}).delegate('#header_wrapper #menu_add_user', 'click', function() {
+		var $adduser = $('#add-user'),
+			$dropdown = $(this).closest('li.dropdown'),
+			offset = $dropdown.offset();
+		
+		$('body').addClass('has-overlay');
+		$adduser.addClass('overlay').css({
+			left: (offset.left - ($adduser.width() - $dropdown.width()) - 5) + 'px',
+			top: (offset.top + $dropdown.outerHeight(true) - 10) + 'px'
+		}).show().find('input').val('').focus();
+		
+		$dropdown.removeClass('hover');
+		
+		return false;
+	}).delegate('#header_wrapper #menu_new_project', 'click', function() {
+		var $newproject = $('#new-project'),
+			$dropdown = $(this).closest('li.dropdown'),
+			offset = $dropdown.offset();
+		
+		$('body').addClass('has-overlay');
+		$newproject.addClass('overlay').css({
+			left: (offset.left - ($newproject.width() - $dropdown.width()) - 5) + 'px',
+			top: (offset.top + $dropdown.outerHeight(true) - 10) + 'px'
+		}).show().find('input').val('').focus();
+		
+		$dropdown.removeClass('hover');
+		
+		return false;
+	});
+	
+	$('body.has-overlay').live('mousedown', function() {
+		$('div.overlay').hide().removeClass('overlay');
+		$(this).removeClass('has-overlay');
 	});
 });

@@ -1,34 +1,31 @@
 <?
-
-function getInput()
+// Does the pretty "x ago"
+function prettydate( $timestamp )
 {
-	$data = file_get_contents('php://input');
-
-	if( strlen( $data ) > 0 )
+	if( gmtToTimezone( now()) - gmtToTimezone( $timestamp ) > 86400 )
 	{
-		return json_decode( $data )->input;
+		return date( 'D M jS, Y - g:ia', gmtToTimezone( $timestamp ));
 	}
 	else
 	{
-		return false;
+		return strtolower( timespan( strtotime( $timestamp ), now()) . ' ago' );
 	}
 }
 
-function getUserOrFail( $CI, $strToken )
+
+// these two functions convert from GMT to timezone... needs to know the timezone, though.
+function getUserTimezone()
 {
-	$objUser = $CI->user_model->getByToken( $strToken );
+	return '';
+}
 
-	if( $objUser )
-	{
-		return $objUser;
-	}
-	else
-	{
-		$objResponse = new response();
-		$objResponse->createError( 1, 'You must be logged in to perform this request.' );
+function gmtToTimezone( $strTimestamp )
+{
+	return strtotime( $strTimestamp );
+	//return gmt_to_local( strtotime( $strTimestamp ), getUserTimezone(), date( 'I' ));
+}
 
-		$CI->load->view( 'json', array( 'json' => $objResponse ));
-
-		die();
-	}
+function getNow()
+{
+	return date( "Y-m-d H:i:s", local_to_gmt(time()));
 }
