@@ -51,33 +51,17 @@ $lang[ 'alpha_dash_dot' ] = array( 212, $lang[ 'error_212' ] );
 
 // 3xx errors, user api errors
 $lang[ 'error_300' ] = 'User not found';
-$lang[ 'error_301' ] = 'User slug is already in use';
+$lang[ 'error_301' ] = 'Email already in use';
 
-// 4xx errors, app api errors
-$lang[ 'error_400' ] = 'App not found';
-$lang[ 'error_401' ] = 'App username already associated with a different user';
-$lang[ 'error_402' ] = 'App domain is already in use';
-$lang[ 'error_403' ] = 'App slug is already in use';
-$lang[ 'error_404' ] = 'App limit for this user has been reached';
+// 4xx errors, project api errors
+$lang[ 'error_400' ] = 'Project not found';
+$lang[ 'error_401' ] = 'You are not the owner of that project';
 
-// 5xx errors, action api errors
-$lang[ 'error_500' ] = 'Action meta data is not a valid JSON object';
-$lang[ 'error_501' ] = 'Action meta data is larger than 2KB';
-$lang[ 'error_502' ] = 'Action not found';
+// 5xx errors, sticky api errors
+$lang[ 'error_500' ] = 'Sticky not found';
+$lang[ 'error_501' ] = 'You are not a member of that project';
 
-// 6xx errors, identity api errors
-$lang[ 'error_600' ] = 'Identity not found';
-$lang[ 'error_601' ] = 'Identity duplicate';
-
-// 7xx errors, axi api errors
-$lang[ 'error_700' ] = 'App association to user already exists';
-$lang[ 'error_701' ] = 'App association to user does not exist';
-
-// 8xx errors, geo api errors
-$lang[ 'error_800' ] = 'Geo record not found';
-
-// 9xx errors, preset api errors
-$lang[ 'error_900' ] = 'Preset not found';
-$lang[ 'error_901' ] = 'Preset with that name already exists for app';
+// 6xx errors, project api errors
+$lang[ 'error_600' ] = 'Invalid key';
 
 ?>
