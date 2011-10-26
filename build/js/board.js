@@ -110,7 +110,9 @@ window.board_object = function() {
 		$headerWrapper = $('#header_wrapper'),
 		$stickyBoardItems = $stickyBoard.children('li'),
 		$stickyBoardLastItem = $stickyBoardItems.last(),
-		$stickyBoardItemsDiv = $stickyBoardItems.children('div');
+		$stickyBoardItemsDiv = $stickyBoardItems.children('div'),
+		$stickyBoardLists = $stickyBoardItemsDiv.children('ul'),
+		listVerticalPadding = (parseInt($stickyBoardLists.first().css('padding-top').replace('px', '')) + parseInt($stickyBoardLists.first().css('padding-bottom').replace('px', '')));
 	
 	this.initBoard = function() {
 		var that = this;
@@ -161,13 +163,15 @@ window.board_object = function() {
 			$stickyBoard.height(winHeight).width($window.width());
 			$stickyBoardItems.height(winHeight);
 			$stickyBoardItemsDiv.height(winHeight - h2height);
+			$stickyBoardLists.css('min-height', (winHeight - h2height - listVerticalPadding) + 'px');
 		} else {
 			$content.css('min-height', winHeight + 'px');
 			$stickyBoard.css('min-height', winHeight + 'px');
 			$stickyBoardItems.css('min-height', winHeight +'px');
 			$stickyBoardItemsDiv.css('min-height', (winHeight - h2height) + 'px');
+			$stickyBoardLists.css('min-height', (winHeight - h2height - listVerticalPadding) + 'px');
 			
-			$('ul.sticky_list.active, ul.user_list.active', $stickyBoardItems).each(function() {
+			$('ul.sticky_list:not(.disabled), ul.user_list:not(.disabled)', $stickyBoardItems).each(function() {
 				colHeight.push($(this).height());
 			}).height(Math.max.apply(this, colHeight));
 		}
@@ -178,16 +182,17 @@ window.board_object = function() {
 	};
 	
 	this.changeUser = function(user_id, user_display) {
-		var $assignedto = $('#assignedto');
+		var $assignedto = $('#assignedto'),
+			$user_list = $assignedto.find('ul#user_' + user_id).removeClass('disabled');
 		
-		if (!user_id || !$assignedto.find('ul#user_' + user_id).addClass('active').length) {
-			$('ul.active:not(.user_list)', $assignedto).removeClass('active');
-			$('ul.user_list', $assignedto).addClass('active');
+		if (!user_id || !$user_list.length) {
+			$('ul:not(.user_list)', $assignedto).addClass('disabled');
+			$('ul.user_list', $assignedto).removeClass('disabled');
 			$assignedto.removeClass('user_view');
 		} else {
-			$assignedto.find('ul.active:not(#user_' + user_id + ')').removeClass('active');
+			$assignedto.find('ul:not(#user_' + user_id + ')').addClass('disabled');
 			$assignedto.find('h2 span.user_display').remove();
-			$assignedto.find('h2 span.icon_back').before($('<span class="user_display"></span>').text(': ' + user_display).attr('title', user_display).tooltip({
+			$assignedto.find('h2 span.icon_back').before($('<span class="user_display"></span>').text(': ' + $user_list.data('user_display')).attr('title', $user_list.data('user_display')).tooltip({
 				'effect': 'fade',
 				'offset': [-3,0],
 				'predelay': 500
@@ -245,14 +250,14 @@ $(function() {
 				top: top + 'px'
 			}).show().find('input').val('').focus();
 		} else {
-			board.changeUser($this.data('user_id'), $this.data('user_display'));
+			$('#view').val($this.data('user_id')).change();
 		}
 	}).delegate('#view', 'change', function() {
 		var $this = $(this);
 		
-		board.changeUser($this.val(), $this.data('user_display'));
+		board.changeUser($this.val());
 	}).delegate('#assignedto.user_view > h2 span.icon_back', 'click', function() {
-		board.changeUser(0);
+		$('#view').val(0).change();
 	}).delegate('.overlay', 'mousedown', function(e) {
 		e.stopPropagation();
 	}).delegate('#header_wrapper div.info ul li.dropdown', 'mouseenter', function() {
@@ -292,5 +297,11 @@ $(function() {
 	$('body.has-overlay').live('mousedown', function() {
 		$('div.overlay').hide().removeClass('overlay');
 		$(this).removeClass('has-overlay');
+	});
+	
+	$('.info_button button').tooltip({
+		'effect': 'fade',
+		'offset': [3,0],
+		'position': 'bottom center'
 	});
 });

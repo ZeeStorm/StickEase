@@ -186,6 +186,17 @@ button span {
 	float: right;
 }
 
+#header_wrapper div.info li.has_button {
+	margin-right: 0;
+}
+
+#header_wrapper div.info li.info_button button {
+	margin: 4px 0 0;
+	min-width: 0;
+	padding: 2px 6px;
+	width: 24px;
+}
+
 #header_wrapper div.info ul div.selector {
 	margin: 2px 0 0;
 }
@@ -524,15 +535,15 @@ div.tooltip {
 
 #sticky_board ul.sticky_list,
 #sticky_board ul.user_list {
-	display: none;
-	height: 0;
+	display: block;
+	height: auto;
 	padding: 8px 8px 68px;
 }
 
-#sticky_board ul.sticky_list.active,
-#sticky_board ul.user_list.active {
-	display: block;
-	height: auto;
+#sticky_board ul.sticky_list.disabled,
+#sticky_board ul.user_list.disabled {
+	display: none;
+	height: 0;
 }
 
 #completed .dropped_sticky {
@@ -593,6 +604,12 @@ div.tooltip {
 
 .sticky div.front {
 	z-index: 201;
+}
+
+.sticky div.front > p,
+.sticky div.back > p,
+.user > span {
+	word-wrap: break-word;
 }
 
 .sticky div.front > div,
@@ -746,7 +763,7 @@ div.tooltip {
 
 .sticky div.back p {
 	font-size: 11px;
-	padding: 0 0 10px;
+	padding: 0 0 6px;
 }
 
 .sticky ul.info li {
