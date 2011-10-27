@@ -18,7 +18,7 @@ class Sticky_model extends CI_Model {
 		);
 
 		// Insert the data
-		if ( $this->db->insert( 'projects', $data ) )
+		if ( $this->db->insert( 'stickys', $data ) )
 		{
 			$objUser = new stdClass();
 			$objUser->user_id = $this->db->insert_id();
@@ -28,7 +28,7 @@ class Sticky_model extends CI_Model {
 		else
 		{
 			$objResponse = new response( false );
-			$objResponse->setError( 400, $this->lang->line( 'error_400' ) );
+			$objResponse->setError( 500, $this->lang->line( 'error_500' ) );
 			
 			return $objResponse;
 		}
@@ -38,21 +38,21 @@ class Sticky_model extends CI_Model {
 	{
 		// Build the data array for the query
 		$data = array(
-			'project_updated' => getNow(),
-			'project_deleted' => 1
+			'sticky_updated' => getNow(),
+			'sticky_deleted' => 1
 		);
 		
-		$this->db->where( 'project_id', $obj->project_id );
+		$this->db->where( 'sticky_id', $obj->sticky_id );
 
 		// Update the data
-		if ( $this->db->update( 'projects', $data ) )
+		if ( $this->db->update( 'stickys', $data ) )
 		{
 			return true;
 		}
 		else
 		{
 			$objResponse = new response( false );
-			$objResponse->setError( 400, $this->lang->line( 'error_400' ) );
+			$objResponse->setError( 500, $this->lang->line( 'error_500' ) );
 			
 			return $objResponse;
 		}
@@ -81,7 +81,7 @@ class Sticky_model extends CI_Model {
 		else
 		{
 			$objResponse = new response( false );
-			$objResponse->setError( 400, $this->lang->line( 'error_400' ) );
+			$objResponse->setError( 500, $this->lang->line( 'error_500' ) );
 			
 			return $objResponse;
 		}
@@ -89,14 +89,14 @@ class Sticky_model extends CI_Model {
 	
 	function update_order( $obj )
 	{
-		if ( $obj->sticky_order < 0 )
+		if ( $obj->sticky_order < 0 || $obj->sticky_order > $obj->sticky_order_new )
 		{
-			return false;
-		}
-		else if ( $obj->sticky_order > $obj->sticky_order_new )
-		{
-			$this->db->where( 'sticky_order >=', $obj->sticky_order );
-			$this->db->where( 'sticky_order <', $obj->sticky_order_new );
+			if ( $obj->sticky_order >= 0 )
+			{
+				$this->db->where( 'sticky_order <', $obj->sticky_order );
+			}
+			
+			$this->db->where( 'sticky_order >=', $obj->sticky_order_new );
 			
 			$this->db->set( 'sticky_order', 'sticky_order+1', false);
 		}
@@ -120,7 +120,7 @@ class Sticky_model extends CI_Model {
 		else
 		{
 			$objResponse = new response( false );
-			$objResponse->setError( 400, $this->lang->line( 'error_400' ) );
+			$objResponse->setError( 500, $this->lang->line( 'error_500' ) );
 			
 			return $objResponse;
 		}

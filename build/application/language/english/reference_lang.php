@@ -56,6 +56,7 @@ $lang[ 'error_301' ] = 'Email already in use';
 // 4xx errors, project api errors
 $lang[ 'error_400' ] = 'Project not found';
 $lang[ 'error_401' ] = 'You are not the owner of that project';
+$lang[ 'error_402' ] = 'That user is already associated to that project';
 
 // 5xx errors, sticky api errors
 $lang[ 'error_500' ] = 'Sticky not found';
