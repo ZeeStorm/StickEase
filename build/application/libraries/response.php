@@ -12,9 +12,15 @@ class response {
 
 		return $this;
 	}
+	
+	public function setSuccess( $bSuccess )
+	{
+		$this->success = $bSuccess;
+	}
 
 	public function setError( $intCode, $strMsg )
 	{
+		$this->success = false;
 		$this->response = new err( (int) $intCode, $strMsg );
 	}
 

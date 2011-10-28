@@ -28,21 +28,19 @@
 					<option value="3">john doe</option>
 					<option value="4">jane doe</option>
 				</select></li>
-				<li class="info_button"><button class="has_tooltip" title="add user">+</button></li>
+				<li class="info_button"><button class="has_tooltip" title="add user" data-overlay="add-user">+</button></li>
 				<li class="has_button"><select>
 					<option selected="selected">Project Stickease</option>
 					<option>DealerNinja.com - Homepage</option>
 					<option>CarNinja.com</option>
 				</select></li>
-				<li class="info_button"><button class="has_tooltip" title="new project">+</button></li>
+				<li class="info_button"><button class="has_tooltip" title="new project" data-overlay="new-project">+</button></li>
 				<li class="dropdown">
 					<button><span>james wagoner</span></button>
 					<ul>
-						<li><a href="#" id="menu_new_project">new project</a></li>
-						<li><a href="#" id="menu_add_user">add user</a></li>
 						<li><a href="/settings">settings</a></li>
-						<li class="divider"></li>
-						<li><a href="/logout" id="logout">logout</a></li>
+						<!--<li class="divider"></li>-->
+						<li><a href="/logout">logout</a></li>
 					</ul>
 				</li>
 			</ul>

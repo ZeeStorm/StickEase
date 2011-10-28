@@ -16,9 +16,10 @@ class api
 		$this->objCI->load->library( 'err' );
 		$this->objCI->load->library( 'response' );
 		$this->objCI->load->library( 'form_validation' );
+		$this->objCI->load->library( 'api_services/svc_base' );
 
 		// Create our response object
-		$this->response = new Response();
+		$this->response = new response();
 	}
 
 	public function callMethod( $strMethod, $objOptions )
@@ -26,52 +27,16 @@ class api
 		$arrMethod = explode( '.', $strMethod );
 
 		$this->objCI->load->library( 'api_services/svc_' . $arrMethod[0] );
-
-		$this->response = call_user_func_array( 'svc_' . $arrMethod[0] . '::' . $arrMethod[1], array( $this, $objOptions ));
+		
+		if ( is_callable( array( 'svc_' . $arrMethod[0], $arrMethod[1] ) ) )
+		{
+			$this->response = call_user_func_array( 'svc_' . $arrMethod[0] . '::' . $arrMethod[1], array( $this->response, $objOptions ));
+		}
+		else
+		{
+			$this->response->setError( 100, $this->lang->line( 'error_100' ) );
+		}
 
 		return $this->response;
-	}
-	
-	protected function validate_form( $obj )
-	{
-		if ( !$this->form_validation->run( $obj ) )
-		{
-			// validation failed
-			$objResponse = new response( false );
-			$errors = $this->form_validation->get_errors();
-			
-			foreach ($errors as $error)
-			{
-				// only use the first one, array looks like array( int error_code, string message )
-				$objResponse->setError( $error[0], $error[1] );
-				break;
-			}
-			
-			$this->form_validation->reset();
-			return $objResponse;
-		}
-		
-		$this->form_validation->reset();
-		
-		return true;
-	}
-	
-	protected function filterData( $obj, $obj_keys )
-	{
-		$filteredObj = new stdClass();
-		
-		foreach ( $obj_keys as $key )
-		{
-			if ( isset( $obj->{$key} ) )
-			{
-				$filteredObj->{$key} = $obj->{$key};
-			}
-			else
-			{
-				$filteredObj->{$key} = null;
-			}
-		}
-		
-		return $filteredObj;
 	}
 }

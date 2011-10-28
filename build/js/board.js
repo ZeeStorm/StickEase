@@ -264,32 +264,30 @@ $(function() {
 		$(this).addClass('hover');
 	}).delegate('#header_wrapper div.info ul li.dropdown', 'mouseleave', function() {
 		$(this).removeClass('hover');
-	}).delegate('#header_wrapper #menu_add_user', 'click', function() {
-		var $adduser = $('#add-user'),
+	})/*.delegate('#header_wrapper .menu_overlay', 'click', function() {
+		var $overlay = $('#' + $(this).data('overlay')),
 			$dropdown = $(this).closest('li.dropdown'),
 			offset = $dropdown.offset();
 		
 		$('body').addClass('has-overlay');
-		$adduser.addClass('overlay').css({
-			left: (offset.left - ($adduser.width() - $dropdown.width()) - 5) + 'px',
+		$overlay.addClass('overlay').css({
+			left: (offset.left - ($overlay.width() - $dropdown.width()) - 5) + 'px',
 			top: (offset.top + $dropdown.outerHeight(true) - 10) + 'px'
 		}).show().find('input').val('').focus();
 		
 		$dropdown.removeClass('hover');
 		
 		return false;
-	}).delegate('#header_wrapper #menu_new_project', 'click', function() {
-		var $newproject = $('#new-project'),
-			$dropdown = $(this).closest('li.dropdown'),
-			offset = $dropdown.offset();
+	})*/.delegate('#header_wrapper li.info_button > button', 'click', function() {
+		var $this = $(this),
+			$adduser = $('#' + $this.data('overlay')),
+			offset = $this.offset();
 		
 		$('body').addClass('has-overlay');
-		$newproject.addClass('overlay').css({
-			left: (offset.left - ($newproject.width() - $dropdown.width()) - 5) + 'px',
-			top: (offset.top + $dropdown.outerHeight(true) - 10) + 'px'
+		$adduser.addClass('overlay').css({
+			left: (offset.left - ($adduser.width() - $this.width()) - 2) + 'px',
+			top: (offset.top + $this.outerHeight(true)) + 'px'
 		}).show().find('input').val('').focus();
-		
-		$dropdown.removeClass('hover');
 		
 		return false;
 	});
