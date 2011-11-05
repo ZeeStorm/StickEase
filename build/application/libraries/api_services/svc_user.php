@@ -8,7 +8,7 @@ class svc_user extends svc_base
 		$this->form_validation->set_rules( 'user_password', 'user_password', 'required|max_length[100]' );
 		$this->form_validation->set_rules( 'user_display', 'user_display', 'trim|required|htmlspecialchars|max_length[75]' );
 		
-		$objForm = $this->validate_form( $obj );
+		$objForm = self::validate_form( $obj );
 		
 		if ( $objForm !== true )
 		{
@@ -21,7 +21,7 @@ class svc_user extends svc_base
 			'user_display'
 		);
 		
-		$this->filterData( $obj, $obj_keys );
+		self::filterData( $obj, $obj_keys );
 		// Build the data array for the query
 		$obj['user_invited'] = 0;
 		
@@ -44,7 +44,7 @@ class svc_user extends svc_base
 		// verify input data first
 		$this->form_validation->set_rules( 'user_email', 'user_email', 'trim|required|valid_email|max_length[255]' );
 		
-		$objForm = $this->validate_form( $obj );
+		$objForm = self::validate_form( $obj );
 		
 		if ( $objForm !== true )
 		{
@@ -55,7 +55,7 @@ class svc_user extends svc_base
 			'user_email'
 		);
 		
-		$this->filterData( $obj, $obj_keys );
+		self::filterData( $obj, $obj_keys );
 		// Build the data array for the query
 		$obj['user_invited'] = 1;
 		$obj['user_display'] = substr( $obj->user_email, 0, 75);

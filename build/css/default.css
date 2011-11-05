@@ -73,8 +73,11 @@ h4 { font-size: 15px; }
 h5 { font-size: 12px; }
 h6 { font-size: 10px; }
 
-input:focus {
-	outline-width: 0;
+input:focus,
+textarea:focus,
+button:focus,
+select:focus {
+	outline: none;
 }
 
 input[type=text],
@@ -233,13 +236,15 @@ button span {
 	padding: 2px 4px 0 0;
 }
 
-li.dropdown button {
+li.dropdown button,
+li.dropdown ul li.base {
 	cursor: default;
 	padding: 2px 6px;
 	position: relative;
 }
 
-li.dropdown button span {
+li.dropdown button span,
+li.dropdown ul li.base span {
 	background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAFCAYAAACJmvbYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEU0QTgxRjZGNThGMTFFMEEwQ0Q5NTc3NTUzQkY4NDIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEU0QTgxRjdGNThGMTFFMEEwQ0Q5NTc3NTUzQkY4NDIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxNUJDRjY3RkYyOTExMUUwQTBDRDk1Nzc1NTNCRjg0MiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxNUJDRjY4MEYyOTExMUUwQTBDRDk1Nzc1NTNCRjg0MiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgBqmaUAAABnSURBVHjaTIuhDQAhFEP7fw6JQWIwWEZgDiQCwTIMyAhoDPJfIDlyTSra19KcU1prGGPgrxACWGtNtVYopS4wxiDnDN7BWksppQOYGaUU7NPzrWOM1HsX5xy893RKEblea8k/vwIMAKmjKQehr+NGAAAAAElFTkSuQmCC) no-repeat right center;
 	min-width: 100px;
 	padding: 0 14px 0 4px;
@@ -484,6 +489,86 @@ div.tooltip {
 	border: 0;
 }
 
+#notstarted h2 button {
+	float: right;
+	width: 20px;
+	margin: -2px 3px 0 0;
+	min-width: 0;
+	padding: 2px 6px;
+	width: 24px;
+}
+
+#notstarted #new_sticky_overlay {
+	background: rgba(214,221,206,0.5);
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 2000;
+}
+
+#new-sticky {
+	display: none;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	z-index: 2001;
+}
+
+#new-sticky > div {
+	height: auto;
+	position: static;
+	width: 160px
+}
+
+#new-sticky > div > div {
+	height: auto;
+	padding-bottom: 30px;
+	width: auto;
+}
+
+#new-sticky textarea {
+	border: 0;
+	height: 16px;
+	margin: 0 3px;
+	padding: 4px;
+	position: relative;
+	resize: none;
+	width: 129px;
+	z-index: 100;
+}
+
+#new-sticky #sticky_note_view {
+	font-family: 'Droid Sans', Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	line-height: 16px;
+	position: absolute;
+	left: 15px;
+	top: 12px;
+	width: 129px;
+	visibility: hidden;
+	z-index: 1;
+}
+
+#new-sticky div.selector {
+	margin: 0;
+	width: 134px;
+}
+
+#new-sticky div.selector span {
+	width: 106px;
+}
+
+#new-sticky div.selector select {
+	width: 138px;
+}
+
+#new-sticky ul.priority {
+	padding: 8px 16px 0;
+	width: auto;
+}
+
 #sticky_board li ul.user_list > li.user {
 	background: #fff;
 	background: -moz-linear-gradient(top, #ffffff 0%, #f1f5e9 100%);
@@ -526,9 +611,9 @@ div.tooltip {
 #sticky_board h2 {
 	border-bottom: 2px solid #d6ddce;
 	line-height: 21px;
-	margin: 8px 8px 0;
+	margin: 0 8px;
 	overflow: hidden;
-	padding: 0 0 4px 4px;
+	padding: 8px 0 4px 4px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
@@ -553,10 +638,25 @@ div.tooltip {
 	width: 1px;
 }
 
+.temp_sticky {
+	border: 2px dashed #d6ddce;
+	float: left;
+	height: 126px;
+	margin: 0 8px 8px 0;
+	width: 126px;
+}
+
+.temp_sticky p {
+	cursor: default;
+	line-height: 126px;
+	text-align: center;
+}
+
 .sticky {
 	float: left;
 	margin: 0 8px 8px 0;
 }
+
 
 .sticky button {
 	font-weight: normal;
@@ -770,7 +870,8 @@ div.tooltip {
 	font-size: 10px;
 }
 
-.sticky div.back button {
+.sticky div.back button,
+#new-sticky button {
 	font-size: 9px;
 	color: #fff;
 	padding: 3px 5px 2px;
@@ -796,23 +897,27 @@ div.tooltip {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffd993', endColorstr='#eabb69',GradientType=0 ); /* IE6-9 */
 }
 
-.sticky div.back button.delete {
+.sticky div.back button.delete,
+#new-sticky button.cancel {
 	position: absolute;
 	bottom: 2px;
 	left: 2px;
 }
 
-.sticky div.back button.done {
+.sticky div.back button.done,
+#new-sticky button.done {
 	position: absolute;
 	bottom: 2px;
 	right: 2px;
 }
 
-.sticky.hover div.back button {
+.sticky.hover div.back button,
+#new-sticky button {
 	display: block;
 }
 
-.sticky div.back button:hover {
+.sticky div.back button:hover,
+#new-sticky button:hover {
 	background: #ffe7bf; /* Old browsers */
 	background: -moz-linear-gradient(top, #ffe7bf 0%, #ffcd7c 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffe7bf), color-stop(100%,#ffcd7c)); /* Chrome,Safari4+ */
@@ -823,7 +928,8 @@ div.tooltip {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe7bf', endColorstr='#ffcd7c',GradientType=0 ); /* IE6-9 */
 }
 
-.sticky.high div.back button {
+.sticky.high div.back button,
+#new-sticky.high button {
 	border: 1px solid #ff75d3;
 	background: #f49cd7; /* Old browsers */
 	background: -moz-linear-gradient(top, #f49cd7 0%, #ff84d8 100%); /* FF3.6+ */
@@ -835,7 +941,8 @@ div.tooltip {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f49cd7', endColorstr='#ff84d8',GradientType=0 ); /* IE6-9 */
 }
 
-.sticky.high div.back button:hover {
+.sticky.high div.back button:hover,
+#new-sticky.high button:hover {
 	background: #f2c6e3; /* Old browsers */
 	background: -moz-linear-gradient(top, #f2c6e3 0%, #ff9bdd 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f2c6e3), color-stop(100%,#ff9bdd)); /* Chrome,Safari4+ */
@@ -846,7 +953,8 @@ div.tooltip {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2c6e3', endColorstr='#ff9bdd',GradientType=0 ); /* IE6-9 */
 }
 
-.sticky.low div.back button {
+.sticky.low div.back button,
+#new-sticky.low button {
 	border: 1px solid #45b2d3;
 	background: #71ceef; /* Old browsers */
 	background: -moz-linear-gradient(top, #71ceef 1%, #45b2d3 100%); /* FF3.6+ */
@@ -858,7 +966,8 @@ div.tooltip {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#71ceef', endColorstr='#45b2d3',GradientType=0 ); /* IE6-9 */
 }
 
-.sticky.low div.back button:hover {
+.sticky.low div.back button:hover,
+#new-sticky.low button:hover {
 	background: #a8dbed; /* Old browsers */
 	background: -moz-linear-gradient(top, #a8dbed 1%, #4cc6e8 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#a8dbed), color-stop(100%,#4cc6e8)); /* Chrome,Safari4+ */
@@ -963,6 +1072,6 @@ div.tooltip {
 	height: 24px;
 	position: absolute;
 	right: 0;
-	top: 0;
+	top: 6px;
 	width: 24px;
 }

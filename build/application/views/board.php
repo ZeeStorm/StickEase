@@ -38,6 +38,7 @@
 				<li class="dropdown">
 					<button><span>james wagoner</span></button>
 					<ul>
+						<li class="base"><span>james wagoner</span></li>
 						<li><a href="/settings">settings</a></li>
 						<!--<li class="divider"></li>-->
 						<li><a href="/logout">logout</a></li>
@@ -51,7 +52,7 @@
 	<div id="content">
 		<ul id="sticky_board" class="clearfix">
 			<li id="notstarted" class="sticky_column">
-				<h2>not&nbsp;started</h2>
+				<h2>not&nbsp;started<button id="new_sticky_btn" class="has_tooltip" title="new sticky">+</button></h2>
 				<div>
 					<ul class="sticky_list clearfix">
 						<li class="sticky med">
@@ -130,6 +131,28 @@
 							</div>
 						</li>
 					</ul>
+					<div id="new-sticky" class="sticky low">
+						<div class="front">
+							<div>
+								<textarea id="sticky_note">this is a test</textarea>
+								<p id="sticky_note_view">this is a test</p>
+								<select id="user_id_assigned">
+									<option selected="selected" value="0">unassigned</option>
+									<option value="1">james wagoner (me)</option>
+									<option value="2">jimmy thomas</option>
+									<option value="3">john doe</option>
+									<option value="4">jane doe</option>
+								</select>
+								<ul class="priority clearfix">
+									<li class="high" title="high">&nbsp;</li>
+									<li class="med" title="medium">&nbsp;</li>
+									<li class="low" title="low">&nbsp;</li>
+								</ul>
+								<button class="cancel">Cancel</button>
+								<button class="done">Done</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</li>
 			<li id="assignedto" class="sticky_column">
@@ -336,6 +359,7 @@
 <script type="text/javascript" src="/js/jquery-1.6.4.min.js"></script>
 <script type="text/javascript" src="/js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="/js/jquery.ui.mouse.touch.js"></script>
+<script type="text/javascript" src="/js/jquery.scrollTo-1.4.2-min.js"></script>
 <script type="text/javascript" src="/js/jquery.tools.min.js"></script>
 <script type="text/javascript" src="/js/jquery.uniform.min.js"></script>
 <script type="text/javascript" src="/js/jquery.quickflip.min.js"></script>

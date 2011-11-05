@@ -14,7 +14,7 @@ $.fn.sticky = function() {
 $.fn.sticky_sort = function() {
 	return $(this).sortable({
 		'connectWith': '.sticky_list',
-		'cancel': ':input,button,ul.priority',
+		'cancel': ':input,button,ul.priority,li.temp_sticky',
 		'containment': '#sticky_board',
 		'opacity': 0.4,
 		'placeholder': 'placeholder',
@@ -158,6 +158,8 @@ window.board_object = function() {
 			liWidth = Math.floor(($window.width() - borderWidth) / 3),
 			colHeight = [];
 		
+		$('body.has-overlay').trigger('mousedown');
+		
 		if (!$.support.touch) {
 			$content.height(winHeight).css('top', headerHeight + 'px');
 			$stickyBoard.height(winHeight).width($window.width());
@@ -290,6 +292,12 @@ $(function() {
 		}).show().find('input').val('').focus();
 		
 		return false;
+	}).delegate('#new_sticky_btn', 'click', function() {
+		$('#notstarted').css('position', 'relative').append('<p id="new_sticky_overlay"></p>')
+		.find('ul.sticky_list').append('<li class="temp_sticky"><p>new sticky</p></li>')
+		.find('li.temp_sticky').scrollTo( 200 );
+		
+		$('#new-sticky').show();
 	});
 	
 	$('body.has-overlay').live('mousedown', function() {
@@ -301,5 +309,19 @@ $(function() {
 		'effect': 'fade',
 		'offset': [3,0],
 		'position': 'bottom center'
+	});
+	
+	$('#notstarted h2 button').tooltip({
+		'effect': 'fade',
+		'offset': [-3,0]
+	});
+	
+	var $new_sticky = $('#new-sticky'),
+		$sticky_note = $('#sticky_note', $new_sticky),
+		$sticky_note_view = $('#sticky_note_view', $new_sticky);
+	
+	$sticky_note.bind( 'keydown keypress keyup', function() {
+		$sticky_note_view.text($sticky_note.val() + ' wrap');
+		$sticky_note.height($sticky_note_view.height());
 	});
 });
