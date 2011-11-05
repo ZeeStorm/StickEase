@@ -97,6 +97,8 @@ $.fn.board_droppable = function() {
 	});
 };
 
+(function(){var a=Handlebars.template,b=Handlebars.templates=Handlebars.templates||{};b["new_sticky"]=a(function(a,b,c,d,e){c=c||a.helpers;var f="",g,h=this,i="function",j=c.helperMissing,k=void 0,l=this.escapeExpression;return f+='\t<li class="sticky ',g=c.sticky_priority||b.sticky_priority,typeof g===i?g=g.call(b,{hash:{}}):g===k&&(g=j.call(b,"sticky_priority",{hash:{}})),f+=l(g)+'">\n\t\t<div class="qf">\n\t\t\t<div class="front">\n\t\t\t\t<div>\n\t\t\t\t\t<p>',g=c.sticky_note||b.sticky_note,typeof g===i?g=g.call(b,{hash:{}}):g===k&&(g=j.call(b,"sticky_note",{hash:{}})),f+=l(g)+'</p>\n\t\t\t\t\t<button class="flip">&nbsp;</button>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t<div class="back">\n\t\t\t\t<div>\n\t\t\t\t\t<p><strong>',g=c.sticky_assigned||b.sticky_assigned,typeof g===i?g=g.call(b,{hash:{}}):g===k&&(g=j.call(b,"sticky_assigned",{hash:{}})),f+=l(g)+'</strong></p>\n\t\t\t\t\t<ul class="priority">\n\t\t\t\t\t\t<li class="high" title="high">&nbsp;</li>\n\t\t\t\t\t\t<li class="med" title="medium">&nbsp;</li>\n\t\t\t\t\t\t<li class="low" title="low">&nbsp;</li>\n\t\t\t\t\t</ul>\n\t\t\t\t\t<ul class="info">\n\t\t\t\t\t\t<li class="created">Created: <span class="date">',g=c.sticky_created||b.sticky_created,typeof g===i?g=g.call(b,{hash:{}}):g===k&&(g=j.call(b,"sticky_created",{hash:{}})),f+=l(g)+'</span></li>\n\t\t\t\t\t</ul>\n\t\t\t\t\t<button class="delete">Delete</button>\n\t\t\t\t\t<button class="done">Done</button>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</li>',f})})()
+
 window.board_object = function() {
 	// since everything is very dynamic, instead of relying on hardcoded values, pre-emp all of this
 	// we store as many references as we can to speed up the resize() function
@@ -207,16 +209,24 @@ window.board_object = function() {
 };
 
 $(function() {
+	var $body = $('body');
+	
 	if ($.support.touch) {
-		$('body').addClass('touch');
+		$body.addClass('touch');
 	} else {
-		$('body').addClass('desktop');
+		$body.addClass('desktop');
 	}
 	
 	window.board = new board_object();
 	
+	var $board = $('#board'),
+		$notstarted = $('#notstarted'),
+		$new_sticky = $('#new-sticky', $notstarted),
+		$view = $('#view'),
+		$adduser = $('#add-user');
+	
 	// event handling
-	$('#board').delegate('li.sticky_column:not(#completed) .sticky ul.priority li', 'click', function() { // priority clicks
+	$board.delegate('li.sticky_column:not(#completed) .sticky ul.priority li', 'click', function() { // priority clicks
 		var $this = $(this),
 			$sticky = $this.closest('.sticky');
 		
@@ -238,7 +248,6 @@ $(function() {
 			top;
 		
 		if ($this.hasClass('add')) {
-			$adduser = $('#add-user');
 			offset = $this.offset();
 			top = (offset.top - Math.floor(($adduser.height() - $this.height()) / 2));
 			
@@ -246,20 +255,16 @@ $(function() {
 				top = ($(window).height() - $adduser.outerHeight(true) - 10);
 			}
 			
-			$('body').addClass('has-overlay');
+			$body.addClass('has-overlay');
 			$adduser.addClass('overlay').css({
 				left: (offset.left - Math.floor(($adduser.width() - $this.width()) / 2)) + 'px',
 				top: top + 'px'
 			}).show().find('input').val('').focus();
 		} else {
-			$('#view').val($this.data('user_id')).change();
+			$view.val($this.data('user_id')).change();
 		}
-	}).delegate('#view', 'change', function() {
-		var $this = $(this);
-		
-		board.changeUser($this.val());
 	}).delegate('#assignedto.user_view > h2 span.icon_back', 'click', function() {
-		$('#view').val(0).change();
+		$view.val(0).change();
 	}).delegate('.overlay', 'mousedown', function(e) {
 		e.stopPropagation();
 	}).delegate('#header_wrapper div.info ul li.dropdown', 'mouseenter', function() {
@@ -282,23 +287,48 @@ $(function() {
 		return false;
 	})*/.delegate('#header_wrapper li.info_button > button', 'click', function() {
 		var $this = $(this),
-			$adduser = $('#' + $this.data('overlay')),
+			$overlay = $('#' + $this.data('overlay')),
 			offset = $this.offset();
 		
-		$('body').addClass('has-overlay');
-		$adduser.addClass('overlay').css({
+		$body.addClass('has-overlay');
+		$overlay.addClass('overlay').css({
 			left: (offset.left - ($adduser.width() - $this.width()) - 2) + 'px',
 			top: (offset.top + $this.outerHeight(true)) + 'px'
 		}).show().find('input').val('').focus();
 		
 		return false;
 	}).delegate('#new_sticky_btn', 'click', function() {
-		$('#notstarted').css('position', 'relative').append('<p id="new_sticky_overlay"></p>')
-		.find('ul.sticky_list').append('<li class="temp_sticky"><p>new sticky</p></li>')
-		.find('li.temp_sticky').scrollTo( 200 );
+		$notstarted.css('position', 'relative').append('<p id="new_sticky_overlay"></p>')
+		.find('ul.sticky_list').append('<li class="temp_sticky"><p>new sticky</p></li>');
+		//.find('li.temp_sticky').scrollTo( 200 );
 		
-		$('#new-sticky').show();
+		$new_sticky.show();
 	});
+	
+	$('button.cancel', $new_sticky).click(function() {
+		$('textarea', $new_sticky.hide()).val('');
+		
+		$notstarted.css('position', 'static').find('#new_sticky_overlay').remove();
+		$notstarted.find('li.temp_sticky').remove();
+	});
+	
+	var $sticky_note = $('#sticky_note', $new_sticky);
+	$('button.done', $new_sticky).click(function() {
+		var $sticky_note;
+		
+		if (!$sticky_note.val()) {
+			$sticky_note.focus();
+		} else {
+			// make ajax request for it
+			// replace li.temp_sticky with ours
+		}
+	});
+	
+	$view.change(function() {
+		var $this = $(this);
+		
+		board.changeUser($this.val());
+	})
 	
 	$('body.has-overlay').live('mousedown', function() {
 		$('div.overlay').hide().removeClass('overlay');
@@ -316,11 +346,9 @@ $(function() {
 		'offset': [-3,0]
 	});
 	
-	var $new_sticky = $('#new-sticky'),
-		$sticky_note = $('#sticky_note', $new_sticky),
-		$sticky_note_view = $('#sticky_note_view', $new_sticky);
+	var $sticky_note_view = $('#sticky_note_view', $new_sticky);
 	
-	$sticky_note.bind( 'keydown keypress keyup', function() {
+	$sticky_note.bind('keydown keypress keyup', function() {
 		$sticky_note_view.text($sticky_note.val() + ' wrap');
 		$sticky_note.height($sticky_note_view.height());
 	});
