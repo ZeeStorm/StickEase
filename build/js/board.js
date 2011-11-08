@@ -244,7 +244,6 @@ $(function() {
 	}).delegate('ul.user_list li.user', 'click', function() { // user click
 		var $this = $(this),
 			offset,
-			$adduser,
 			top;
 		
 		if ($this.hasClass('add')) {

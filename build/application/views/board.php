@@ -134,8 +134,8 @@
 					<div id="new-sticky" class="sticky low">
 						<div class="front">
 							<div>
-								<textarea id="sticky_note">this is a test</textarea>
-								<p id="sticky_note_view">this is a test</p>
+								<textarea id="sticky_note"></textarea>
+								<p id="sticky_note_view"></p>
 								<select id="user_id_assigned">
 									<option selected="selected" value="0">unassigned</option>
 									<option value="1">james wagoner (me)</option>
@@ -365,6 +365,7 @@
 <script type="text/javascript" src="/js/jquery.tools.min.js"></script>
 <script type="text/javascript" src="/js/jquery.uniform.min.js"></script>
 <script type="text/javascript" src="/js/jquery.quickflip.min.js"></script>
+<script type="text/javascript" src="/js/handlebars.vm.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
 <script type="text/javascript" src="/js/board.js"></script>
 </body>
