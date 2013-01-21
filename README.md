@@ -7,4 +7,4 @@ Since this was going to be a SaaS, there is a half-finished user system in this.
 
 StickEase was built with PHP 5 + CodeIgniter, jQuery 1.6.4, handlebars and misc jQuery plugins. It also includes a self built rudimentary CodeIgniter API system that was developed for the original Stage (http://stage.io) concept. It has evolved many times over since this, but was a great experiment.
 
-Enjoy :)
+Enjoy :) 
